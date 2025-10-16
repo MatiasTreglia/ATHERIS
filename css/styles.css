@@ -1,0 +1,195 @@
+/* Definición de la Paleta de Colores con Variables CSS */
+:root {
+    --color-primary: #468FAF;    /* Azul Ciel - Títulos / Principal */
+    --color-secondary: #A9D6E5;  /* Azul Claro - Subtítulos / Botones */
+    --color-dark: #000000;       /* Texto General y Títulos */
+    --color-light: #FFFFFF;      /* Background principal */
+    --color-accent: #E0E0E0;     /* Decoraciones/Bordes */
+    --color-text-secondary: #555555; /* Gris suave para textos largos */
+    --bg-light-section: var(--color-light); /* Blanco */
+}
+
+/* Estilos Globales */
+body {
+    /* Establece el color de fondo de toda la página a blanco */
+    background-color: var(--color-light); /* Que es #FFFFFF */
+    color: var(--color-dark); /* Color de texto por defecto (Negro) */
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 72px; /* Espacio para el Navbar fijo */
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Tipografía de Títulos: Títulos negros, acento en azul si es necesario */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-dark); 
+    font-weight: 700;
+}
+/* Estilo para destacar palabras con el color primario */
+.text-primary-color {
+    color: var(--color-primary) !important;
+}
+
+/* ============================================== */
+/* NAVBAR FIJO (COLORES SOLICITADOS - SOLUCIÓN FINAL CSS) */
+/* ============================================== */
+
+/* Usamos el ID para asegurar que el fondo sea el color primario */
+#main-navbar {
+    background-color: var(--color-primary) !important; /* Fondo: Azul Primario (#468FAF) */
+    border-bottom: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease;
+}
+
+/* El texto y la marca deben ser blancos */
+.navbar-brand {
+    color: var(--color-light) !important; /* Marca en Blanco */
+    font-size: 1.5rem;
+}
+.navbar-nav .nav-link {
+    color: var(--color-light) !important; /* Enlaces en Blanco */
+    font-weight: 600;
+}
+
+/* Hover solicitado: e0e0e0 (color accent) */
+.navbar-nav .nav-link:hover {
+    color: var(--color-accent) !important; /* Hover en Gris Claro (#E0E0E0) */
+}
+
+/* Estilo del botón de Contacto en el Navbar */
+.btn-secondary-custom {
+    background-color: var(--color-light); /* Fondo del Botón en Blanco */
+    color: var(--color-primary); /* Texto del Botón en Azul Primario */
+    border: 2px solid var(--color-light);
+    transition: all 0.3s ease;
+}
+.btn-secondary-custom:hover {
+    background-color: transparent; 
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* El botón de contacto debe contrastar */
+.btn-secondary-custom {
+    background-color: var(--color-light); /* Fondo del Botón en Blanco */
+    color: var(--color-primary); /* Texto del Botón en Azul Primario */
+    border: 2px solid var(--color-light);
+    transition: all 0.3s ease;
+}
+.btn-secondary-custom:hover {
+    background-color: transparent; 
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+
+/* ============================================== */
+/* ESTILOS DE BOTONES PERSONALIZADOS */
+/* ============================================== */
+.btn-primary-custom {
+    background-color: var(--color-primary); 
+    color: var(--color-light);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+}
+.btn-primary-custom:hover {
+    background-color: var(--color-dark);
+    border-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+
+/* ============================================== */
+/* ESTILOS DE SECCIÓN */
+/* ============================================== */
+section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--color-light); /* Fondo Blanco por defecto */
+}
+.bg-light-section {
+    background-color: var(--bg-light-section); /* Esto hará que el header sea blanco */
+}
+.bg-dark-section {
+    background-color: var(--color-dark);
+}
+
+/* SECCIÓN 1: INICIO/HEADER */
+#inicio {
+    /* Mantenemos la imagen de fondo con menos saturación para el estilo limpio */
+    
+    background-size: cover;
+    background-position: center;
+    color: var(--color-light); 
+    text-shadow: 0 0 5px rgba(0,0,0,0.4); 
+    height: 100vh;
+}
+
+#inicio h1 {
+    color: var(--color-light); /* Título en el header será blanco para contrastar */
+}
+#inicio p.lead {
+    color: var(--color-secondary); /* Subtítulo con color secundario */
+}
+
+/* SECCIÓN 2: VENTAJAS */
+#ventajas h2 {
+    color: var(--color-dark);
+}
+#ventajas .shadow-sm {
+    border: 1px solid var(--color-accent) !important; /* Borde más visible */
+    transition: transform 0.3s ease;
+}
+#ventajas .shadow-sm:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* SECCIÓN 3: PRODUCTO (Pinning) */
+#producto {
+    background-color: var(--color-primary); /* Azul principal para destacar */
+    color: var(--color-light);
+    overflow: hidden; 
+}
+#producto h2 {
+    color: var(--color-light);
+}
+#pin-container {
+    height: 300vh; 
+}
+
+/* SECCIÓN 5: CONTACTO */
+#contacto h2 {
+    color: var(--color-secondary);
+}
+
+/* ============================================== */
+/* ESTILOS DE HEADER / HERO */
+/* ============================================== */
+
+/* Estilo para la imagen del hero (Ajusta el max-width si es muy grande) */
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    /* Efecto sutil para que destaque un poco */
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+}
+
+/* Ajuste para el texto secundario que hemos añadido */
+.btn-secondary-custom-border {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-custom-border:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
