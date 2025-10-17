@@ -79,3 +79,4 @@ document.addEventListener('DOMContentLoaded', function() {
     .to("#mascarilla-img", {scale: 1, rotation: 0, duration: 1}, 3);
 
 });
+

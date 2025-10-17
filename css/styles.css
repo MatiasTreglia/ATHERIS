@@ -45,22 +45,24 @@ h1, h2, h3, h4, h5, h6 {
     transition: background-color 0.3s ease;
 }
 
-/* El texto y la marca deben ser blancos */
+/* 1. EL TEXTO DE LA MARCA (si lo hubiera) YA NO NECESITA COLOR */
 .navbar-brand {
-    color: var(--color-light) !important; /* Marca en Blanco */
-    font-size: 1.5rem;
+    /* Aquí se define la altura de la imagen en el HTML, no es necesario color aquí */
+    font-size: rem;
 }
+
+/* 2. ENLACES: Texto en blanco */
 .navbar-nav .nav-link {
     color: var(--color-light) !important; /* Enlaces en Blanco */
     font-weight: 600;
 }
 
-/* Hover solicitado: e0e0e0 (color accent) */
+/* 3. HOVER: e0e0e0 (color accent) */
 .navbar-nav .nav-link:hover {
     color: var(--color-accent) !important; /* Hover en Gris Claro (#E0E0E0) */
 }
 
-/* Estilo del botón de Contacto en el Navbar */
+/* 4. ESTILO DEL BOTÓN DE CONTACTO (BLANCO) */
 .btn-secondary-custom {
     background-color: var(--color-light); /* Fondo del Botón en Blanco */
     color: var(--color-primary); /* Texto del Botón en Azul Primario */
@@ -73,19 +75,32 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--color-accent);
 }
 
-/* El botón de contacto debe contrastar */
-.btn-secondary-custom {
-    background-color: var(--color-light); /* Fondo del Botón en Blanco */
-    color: var(--color-primary); /* Texto del Botón en Azul Primario */
-    border: 2px solid var(--color-light);
-    transition: all 0.3s ease;
-}
-.btn-secondary-custom:hover {
-    background-color: transparent; 
-    color: var(--color-accent);
-    border-color: var(--color-accent);
-}
+/* ============================================== */
+/* SOLUCIÓN CENTRADO DE NAVBAR (PANTALLA GRANDE) */
+/* ============================================== */
 
+/* Solo se aplica en pantallas de escritorio o mayores (lg) */
+@media (min-width: 992px) {
+    /* Usamos flexbox en el contenedor principal para centrar el ul */
+    #navbarNav {
+        display: flex; /* Habilitamos flexbox */
+        justify-content: center; /* Centramos el contenido horizontalmente */
+        width: 100%; /* Aseguramos que ocupe todo el espacio disponible */
+    }
+    
+    /* Le damos a los links un margen auto para que se centren dentro del espacio */
+    #navbarNav .navbar-nav {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Movemos el botón de contacto de vuelta a la derecha */
+    #navbarNav .ms-auto {
+        margin-left: 0 !important; /* Deshacemos el 'ms-auto' para el centrado general */
+        position: absolute; /* Lo sacamos del flujo normal */
+        right: 15px; /* Posicionamos a la derecha del contenedor */
+    }
+}
 
 /* ============================================== */
 /* ESTILOS DE BOTONES PERSONALIZADOS */
@@ -138,35 +153,45 @@ section {
     color: var(--color-secondary); /* Subtítulo con color secundario */
 }
 
-/* SECCIÓN 2: VENTAJAS */
-#ventajas h2 {
-    color: var(--color-dark);
-}
-#ventajas .shadow-sm {
-    border: 1px solid var(--color-accent) !important; /* Borde más visible */
-    transition: transform 0.3s ease;
-}
-#ventajas .shadow-sm:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+/* ... [Tu CSS anterior debe estar aquí] ... */
+
+/* ============================================== */
+/* ANIMACIÓN SCROLL REVEAL (VENTAJAS) */
+/* ============================================== */
+
+/* Estado Inicial: Oculto y Ligeramente Desplazado
+   Esta clase no debe estar aplicada por defecto, solo la usaremos cuando
+   el elemento esté fuera de la vista para evitar el "Flash of Unstyled Content" (FOUC).
+   La aplicaremos y quitaremos con JS. */
+.advantage-item {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transición suave */
 }
 
-/* SECCIÓN 3: PRODUCTO (Pinning) */
-#producto {
-    background-color: var(--color-primary); /* Azul principal para destacar */
-    color: var(--color-light);
-    overflow: hidden; 
-}
-#producto h2 {
-    color: var(--color-light);
-}
-#pin-container {
-    height: 300vh; 
+/* Estado que aplica el desplazamiento inicial (lo que queremos ocultar al principio) */
+.scroll-start {
+    opacity: 0;
+    transform: translateY(50px); /* Mover 50px hacia abajo */
 }
 
-/* SECCIÓN 5: CONTACTO */
-#contacto h2 {
-    color: var(--color-secondary);
+
+/* Estado Activo: Visible y en Posición Original */
+/* Se aplica cuando el elemento está en el viewport */
+.advantage-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Eliminamos la clase 'is-hidden' ya que no queremos que desaparezcan al scrollear hacia arriba */
+
+
+/* Estilos específicos para la sección Ventajas */
+#ventajas .lead {
+    color: var(--color-dark); /* Color oscuro para el texto principal */
+}
+
+/* Asegurar el sombreado */
+#ventajas img {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* ============================================== */
@@ -177,8 +202,11 @@ section {
 .hero-image {
     max-width: 100%;
     height: auto;
-    /* Efecto sutil para que destaque un poco */
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+
+    /* === AÑADIDO: Degradado de transparencia en el borde inferior === */
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); /* Para compatibilidad con Webkit */
 }
 
 /* Ajuste para el texto secundario que hemos añadido */

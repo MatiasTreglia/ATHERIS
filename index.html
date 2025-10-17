@@ -11,27 +11,39 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+    
     <link rel="stylesheet" href="./css/styles.css"> 
+</head>
 </head>
 <body>
 
-   <nav id="main-navbar" class="navbar navbar-expand-lg fixed-top navbar-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#inicio">ATHERIS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ventajas">Ventajas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#producto">Producto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonios">Casos de Éxito</a></li>
-                    <li class="nav-item"><a class="btn btn-sm btn-secondary-custom ms-lg-3" href="#contacto">Contacto</a></li>
-                </ul>
+<nav id="main-navbar" class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#inicio">
+            <img src="./img/logo2sinfondo.png" alt="ATHERIS Logo" height="40">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <ul class="navbar-nav" id="main-menu-links"> 
+                <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#ventajas">Ventajas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#producto">Producto</a></li>
+                <li class="nav-item"><a class="nav-link" href="#testimonios">Casos de Éxito</a></li>
+            </ul>
+            
+            <div class="ms-auto">
+                <a class="btn btn-sm btn-secondary-custom" href="#contacto">Contacto</a>
             </div>
+            
         </div>
-    </nav>
+    </div>
+</nav>
 
 
    <header id="hero" class="bg-light-section py-5">
@@ -39,7 +51,7 @@
         <div class="row w-100 align-items-center">
             
             <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
-                <h1 class="display-3 fw-bold mb-4" style="color: var(--color-primary);">Llevá tu Clínica al Futuro: <span style="color: var(--color-dark);">Máscaras de Oxígeno 3D</span></h1>
+                <h1 class="display-3 fw-bold mb-4" style="color: var(--color-primary);">Máscaras de Oxígeno 3D. <span style="color: var(--color-dark);">Llevá tu Clínica al Futuro</span></h1>
                 <p class="lead mb-4">
                     Fabricadas con tecnología 3D para lograr un calce ergonómico perfecto, garantizando la eficacia de la oxigenación en cualquier raza o tamaño de animal..
                 </p>
@@ -48,36 +60,51 @@
             </div>
 
             <div class="col-lg-6 text-center">
-                <img src="./img/logopng.jpg" alt="Ilustración de Filtro Industrial" class="img-fluid hero-image">
+                <img src="./img/veterinariaconperrosinfondo.png" alt="Ilustración de Veterinaria con Perro" class="img-fluid hero-image">
             </div>
 
         </div>
     </div>
 </header>
 
-    <section id="ventajas" class="py-5">
+   <!-- SECCIÓN 2: VENTAJAS (NUEVA ESTRUCTURA) -->
+    <section id="ventajas" class="bg-light-section py-5">
         <div class="container py-5">
-             <h2 class="text-center display-5 fw-bold mb-5">Innovación, Sostenibilidad y Eficacia</h2>
-             <div class="row text-center pt-5">
-                <div class="col-md-4 mb-4" data-scroll-item>
-                    <div class="p-4 border rounded shadow-sm h-100 bg-white">
-                        <h3 class="fw-bold text-primary-color">Diseño Ergonómico 3D</h3>
-                        <p>Mascarillas adaptables a cada una de las razas y tamaños, con medidas personalizadas gracias a la impresión 3D.</p>
-                    </div>
+            <h2 class="text-center display-5 fw-bold mb-5" style="color: var(--color-primary);">Nuestras Ventajas Competitivas</h2>
+            
+            <!-- Renglón 1: Texto Izquierda, Imagen Derecha -->
+            <div class="row align-items-center mb-5 advantage-item" data-scroll-reveal>
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right"> 
+                    <h3 class="fw-bold mb-3" style="color: var(--color-dark);">01. Diseño Ergonómico y a Medida</h3>
+                    <p class="lead">Mascarillas adaptables a cada una de las razas y tamaños, con medidas personalizadas gracias a la impresión 3D, garantizando el máximo confort y efectividad.</p>
                 </div>
-                 <div class="col-md-4 mb-4" data-scroll-item>
-                    <div class="p-4 border rounded shadow-sm h-100 bg-white">
-                        <h3 class="fw-bold text-primary-color">Producto Nacional y Ecológico</h3>
-                        <p>Producto 100% argentino, fabricado con material reciclable para un menor impacto ambiental.</p>
-                    </div>
+                <div class="col-lg-6 text-center" data-scroll-image data-aos="fade-left" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/808080/FFFFFF?text=Dise%C3%B1o+3D" class="img-fluid rounded shadow-lg" alt="Diseño 3D de un producto">
                 </div>
-                 <div class="col-md-4 mb-4" data-scroll-item>
-                    <div class="p-4 border rounded shadow-sm h-100 bg-white">
-                        <h3 class="fw-bold text-primary-color">Material Flexible y Seguro</h3>
-                        <p>Uso de materiales de alta calidad (PLA y TPU) que garantizan durabilidad y la comodidad del animal.</p>
-                    </div>
+            </div>
+
+            <!-- Renglón 2: Imagen Izquierda, Texto Derecha (Usamos order-lg-2 y order-lg-1) -->
+            <div class="row align-items-center mb-5 advantage-item" data-scroll-reveal>
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
+                    <h3 class="fw-bold mb-3" style="color: var(--color-dark);">02. Sostenibilidad y Producción Nacional</h3>
+                    <p class="lead">Producto 100% argentino, fabricado con material reciclable para un menor impacto ambiental, apoyando la economía local y la responsabilidad ecológica.</p>
                 </div>
-             </div>
+                <div class="col-lg-6 order-lg-1 text-center" data-scroll-image data-aos="fade-right" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/98C1D9/181A1B?text=Ecol%C3%B3gico" class="img-fluid rounded shadow-lg" alt="Producto Nacional y Ecológico">
+                </div>
+            </div>
+
+            <!-- Renglón 3: Texto Izquierda, Imagen Derecha -->
+           <div class="row align-items-center advantage-item" data-scroll-reveal>
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h3 class="fw-bold mb-3" style="color: var(--color-dark);">03. Material Flexible y Seguro</h3>
+                    <p class="lead">Uso de materiales de alta calidad (PLA y TPU) que garantizan durabilidad, resistencia y, lo más importante, la total comodidad y seguridad del animal.</p>
+                </div>
+                <div class="col-lg-6 text-center" data-scroll-image data-aos="fade-left" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/EE6C4D/FFFFFF?text=Seguridad" class="img-fluid rounded shadow-lg" alt="Material Flexible y Seguro">
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -112,6 +139,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script src="scripts.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script> AOS.init(); </script>
+</body>
+</html>
     
 </body>
 </html>
