@@ -219,3 +219,31 @@ section {
     background-color: var(--color-primary);
     color: var(--color-light);
 }
+
+/* ============================================== */
+/* ANIMACIÓN SCROLL REVEAL (VENTAJAS) */
+/* ============================================== */
+
+/* Estado Inicial: Oculto y Ligeramente Desplazado
+   Esta clase no debe estar aplicada por defecto, solo la usaremos cuando
+   el elemento esté fuera de la vista para evitar el "Flash of Unstyled Content" (FOUC).
+   La aplicaremos y quitaremos con JS. */
+.advantage-item {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transición suave */
+}
+
+/* Estado que aplica el desplazamiento inicial (lo que queremos ocultar al principio) */
+.scroll-start {
+    opacity: 0;
+    transform: translateY(50px); /* Mover 50px hacia abajo */
+}
+
+
+/* Estado Activo: Visible y en Posición Original */
+/* Se aplica cuando el elemento está en el viewport */
+.advantage-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Eliminamos la clase 'is-hidden' ya que no queremos que desaparezcan al scrollear hacia arriba */

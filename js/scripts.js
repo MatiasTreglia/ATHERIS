@@ -3,51 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ==============================================
-    // EFECTO 1: HEADER (Desvanecimiento)
-    // ==============================================
-    gsap.to("#inicio .container", {
-        scrollTrigger: {
-            trigger: "#inicio", 
-            start: "top top", 
-            end: "bottom top", 
-            scrub: 1.5,
-        },
-        opacity: 0, 
-        y: -100, 
-        scale: 0.9, 
-        ease: "power1.in", 
-    });
-
-    // ==============================================
-    // EFECTO 2: VENTAJAS (Entrada Secuencial)
-    // ==============================================
-
-    // Inicialmente ocultamos los elementos que queremos animar
-    gsap.set("[data-scroll-item]", { opacity: 0, y: 50 });
-
-    // Timeline para la aparición secuencial
-    gsap.utils.toArray("[data-scroll-item]").forEach((item, i) => {
-        gsap.to(item, {
-            scrollTrigger: {
-                trigger: item, 
-                start: "top 85%", 
-                toggleActions: "play none none reverse" 
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay: i * 0.15, 
-            ease: "power2.out"
-        });
-    });
-
-
-    // ==============================================
-    // EFECTO 3: PRODUCTO (Pinning y Scroll)
-    // ==============================================
-
-    // 1. PINNING: La sección 'pin-container' se queda fija mientras hacemos scroll
+    // 1. Pinning de la Sección de Producto
     ScrollTrigger.create({
         trigger: "#producto",
         pin: "#pin-container", 
