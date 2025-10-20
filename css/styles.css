@@ -1,6 +1,6 @@
 /* Definición de la Paleta de Colores con Variables CSS */
 :root {
-    --color-primary: #468FAF;    /* Azul Ciel - Títulos / Principal */
+    --color-primary: #6096ba;    /* Azul Ciel - Títulos / Principal */
     --color-secondary: #A9D6E5;  /* Azul Claro - Subtítulos / Botones */
     --color-dark: #000000;       /* Texto General y Títulos */
     --color-light: #FFFFFF;      /* Background principal */
@@ -247,3 +247,114 @@ section {
 }
 
 /* Eliminamos la clase 'is-hidden' ya que no queremos que desaparezcan al scrollear hacia arriba */
+
+
+/* ============================================== */
+/* ESTILOS DE SECCIÓN (AJUSTE DE FONDO) */
+/* ============================================== */
+section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--color-light); /* Fondo Blanco por defecto */
+}
+/* CAMBIO 1: Revertir #ventajas a sección normal, fondo sólido gris */
+#ventajas {
+    background-color: #FFFFFF; /* Fondo solicitado (Gris Sólido) */
+    /* Remover estilos de tarjeta gigante: max-width, margin, border-radius */
+    min-height: 100vh; /* Restaurar el min-height */
+}
+
+/* ============================================== */
+/* NUEVO ESTILO: CARD PARA CADA FILA COMPLETA */
+/* ============================================== */
+.advantage-row-card {
+    background-color: #a3cef1; /* Fondo Blanco para que la fila flote */
+    border-radius: 20px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px; /* Espaciado interno generoso */
+    margin-bottom: 40px; /* Espacio entre las filas (cards) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover sutil para la fila completa */
+.advantage-row-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ============================================== */
+/* ESTILO DE CARD PARA SECCIÓN VENTAJAS (AJUSTE DE CONTRASTE) */
+/* ============================================== */
+.advantage-card {
+    /* Color de fondo solicitado para la tarjeta de texto */
+    background-color: #6096ba; 
+    /* ... (resto de los estilos de sombra, border-radius, etc., se mantienen) ... */
+    
+    /* Nota: Si la card de texto es parte de la row-card blanca, 
+       podemos simplificar un poco la sombra para no competir */
+    box-shadow: none; /* Quitamos la sombra de la card interna, ya que la fila la tiene */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+}
+
+/* Ajuste: Quitar el hover de la card interna para que solo flote la fila */
+.advantage-card:hover {
+    transform: none; 
+    box-shadow: none;
+}
+
+/* ... [Resto del CSS] ... */
+.bg-light-section {
+    background-color: var(--bg-light-section); /* Esto hará que el header sea blanco */
+}
+/* ... resto del CSS de estilos de sección ... */
+
+/* ============================================== */
+/* ESTILO DE CARD PARA SECCIÓN VENTAJAS (ESTÉTICA MEJORADA CON NUEVO COLOR) */
+/* ============================================== */
+.advantage-card {
+    /* CAMBIO 2: Nuevo color de fondo para la tarjeta */
+    background-color: #FFFFFF; /* Color solicitado */
+    
+    /* Sombra más estetica y elevada */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), /* Sombra principal más amplia */
+                0 4px 6px rgba(0, 0, 0, 0.05);  /* Sombra más cercana sutil */
+    
+    /* Bordes redondeados sutiles */
+    border-radius: 12px; 
+    
+    /* Espaciado interno generoso */
+    padding: 30px; 
+    
+    /* Transición para la animación al pasar el mouse */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+/* Efecto al pasar el mouse (Mejora estética con interacción) */
+.advantage-card:hover {
+    transform: translateY(-5px); /* Se levanta 5px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), /* Sombra más intensa al levantarse */
+                0 6px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Ajuste para que el texto dentro de la card sea blanco para contrastar con el fondo azul oscuro */
+.advantage-card h3 {
+    color: #6096ba; /* Títulos en blanco para contraste */
+    font-weight: 700;
+}
+.advantage-card p {
+    color: #6096ba; /* Texto principal en blanco */
+}
+
+/* ============================================== */
+/* ESTILO ADICIONALES */
+/* ============================================== */
+
+/* Sombra de texto para hacer que los títulos claros destaquen */
+.text-shadow-custom {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra oscura sutil */
+    color: #6096ba; 
+}
