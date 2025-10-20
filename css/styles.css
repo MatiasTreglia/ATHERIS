@@ -1,4 +1,6 @@
-/* Definición de la Paleta de Colores con Variables CSS */
+/* ============================================== */
+/* 0. PALETA DE COLORES Y VARIABLES */
+/* ============================================== */
 :root {
     --color-primary: #6096ba;    /* Azul Ciel - Títulos / Principal */
     --color-secondary: #A9D6E5;  /* Azul Claro - Subtítulos / Botones */
@@ -9,7 +11,9 @@
     --bg-light-section: var(--color-light); /* Blanco */
 }
 
-/* Estilos Globales */
+/* ============================================== */
+/* 1. ESTILOS GLOBALES Y TIPOGRAFÍA */
+/* ============================================== */
 body {
     /* Establece el color de fondo de toda la página a blanco */
     background-color: var(--color-light); /* Que es #FFFFFF */
@@ -23,32 +27,37 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Tipografía de Títulos: Títulos negros, acento en azul si es necesario */
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-dark); 
     font-weight: 700;
 }
+
 /* Estilo para destacar palabras con el color primario */
 .text-primary-color {
     color: var(--color-primary) !important;
 }
 
+/* Sombra de texto para hacer que los títulos claros destaquen */
+.text-shadow-custom {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra oscura sutil */
+    color: #6096ba; /* Color directo del texto, aunque se sobrescribe en HTML */
+}
+
 /* ============================================== */
-/* NAVBAR FIJO (COLORES SOLICITADOS - SOLUCIÓN FINAL CSS) */
+/* 2. NAVBAR FIJO */
 /* ============================================== */
 
 /* Usamos el ID para asegurar que el fondo sea el color primario */
 #main-navbar {
-    background-color: var(--color-primary) !important; /* Fondo: Azul Primario (#468FAF) */
+    background-color: var(--color-primary) !important; /* Fondo: Azul Primario */
     border-bottom: none;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
     transition: background-color 0.3s ease;
 }
 
-/* 1. EL TEXTO DE LA MARCA (si lo hubiera) YA NO NECESITA COLOR */
+/* 1. EL TEXTO DE LA MARCA */
 .navbar-brand {
-    /* Aquí se define la altura de la imagen en el HTML, no es necesario color aquí */
-    font-size: rem;
+    font-size: rem; /* Propiedad incompleta en el código original */
 }
 
 /* 2. ENLACES: Texto en blanco */
@@ -62,30 +71,17 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-accent) !important; /* Hover en Gris Claro (#E0E0E0) */
 }
 
-/* 4. ESTILO DEL BOTÓN DE CONTACTO (BLANCO) */
-.btn-secondary-custom {
-    background-color: var(--color-light); /* Fondo del Botón en Blanco */
-    color: var(--color-primary); /* Texto del Botón en Azul Primario */
-    border: 2px solid var(--color-light);
-    transition: all 0.3s ease;
-}
-.btn-secondary-custom:hover {
-    background-color: transparent; 
-    color: var(--color-accent);
-    border-color: var(--color-accent);
-}
-
 /* ============================================== */
-/* SOLUCIÓN CENTRADO DE NAVBAR (PANTALLA GRANDE) */
+/* 3. SOLUCIÓN CENTRADO DE NAVBAR (PANTALLA GRANDE) */
 /* ============================================== */
 
 /* Solo se aplica en pantallas de escritorio o mayores (lg) */
 @media (min-width: 992px) {
     /* Usamos flexbox en el contenedor principal para centrar el ul */
     #navbarNav {
-        display: flex; /* Habilitamos flexbox */
-        justify-content: center; /* Centramos el contenido horizontalmente */
-        width: 100%; /* Aseguramos que ocupe todo el espacio disponible */
+        display: flex; 
+        justify-content: center; 
+        width: 100%; 
     }
     
     /* Le damos a los links un margen auto para que se centren dentro del espacio */
@@ -96,15 +92,17 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Movemos el botón de contacto de vuelta a la derecha */
     #navbarNav .ms-auto {
-        margin-left: 0 !important; /* Deshacemos el 'ms-auto' para el centrado general */
-        position: absolute; /* Lo sacamos del flujo normal */
-        right: 15px; /* Posicionamos a la derecha del contenedor */
+        margin-left: 0 !important; 
+        position: absolute; 
+        right: 15px; 
     }
 }
 
 /* ============================================== */
-/* ESTILOS DE BOTONES PERSONALIZADOS */
+/* 4. ESTILOS DE BOTONES PERSONALIZADOS */
 /* ============================================== */
+
+/* Botón Primario (Comprar) */
 .btn-primary-custom {
     background-color: var(--color-primary); 
     color: var(--color-light);
@@ -117,9 +115,33 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-light);
 }
 
+/* Botón Secundario (Contacto - Blanco) */
+.btn-secondary-custom {
+    background-color: var(--color-light); /* Fondo del Botón en Blanco */
+    color: var(--color-primary); /* Texto del Botón en Azul Primario */
+    border: 2px solid var(--color-light);
+    transition: all 0.3s ease;
+}
+.btn-secondary-custom:hover {
+    background-color: transparent; 
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* Ajuste para el texto secundario que se añade como borde */
+.btn-secondary-custom-border {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+}
+.btn-secondary-custom-border:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
 
 /* ============================================== */
-/* ESTILOS DE SECCIÓN */
+/* 5. ESTILOS BASE DE SECCIÓN */
 /* ============================================== */
 section {
     position: relative;
@@ -129,153 +151,81 @@ section {
     background-color: var(--color-light); /* Fondo Blanco por defecto */
 }
 .bg-light-section {
-    background-color: var(--bg-light-section); /* Esto hará que el header sea blanco */
+    background-color: var(--bg-light-section);
 }
 .bg-dark-section {
     background-color: var(--color-dark);
 }
 
-/* SECCIÓN 1: INICIO/HEADER */
+/* ============================================== */
+/* 6. ESTILOS ESPECÍFICOS POR SECCIÓN */
+/* ============================================== */
+
+/* A. SECCIÓN INICIO/HEADER */
 #inicio {
-    /* Mantenemos la imagen de fondo con menos saturación para el estilo limpio */
-    
     background-size: cover;
     background-position: center;
     color: var(--color-light); 
     text-shadow: 0 0 5px rgba(0,0,0,0.4); 
     height: 100vh;
 }
-
 #inicio h1 {
     color: var(--color-light); /* Título en el header será blanco para contrastar */
 }
 #inicio p.lead {
     color: var(--color-secondary); /* Subtítulo con color secundario */
 }
-
-/* ... [Tu CSS anterior debe estar aquí] ... */
-
-/* ============================================== */
-/* ANIMACIÓN SCROLL REVEAL (VENTAJAS) */
-/* ============================================== */
-
-/* Estado Inicial: Oculto y Ligeramente Desplazado
-   Esta clase no debe estar aplicada por defecto, solo la usaremos cuando
-   el elemento esté fuera de la vista para evitar el "Flash of Unstyled Content" (FOUC).
-   La aplicaremos y quitaremos con JS. */
-.advantage-item {
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transición suave */
-}
-
-/* Estado que aplica el desplazamiento inicial (lo que queremos ocultar al principio) */
-.scroll-start {
-    opacity: 0;
-    transform: translateY(50px); /* Mover 50px hacia abajo */
-}
-
-
-/* Estado Activo: Visible y en Posición Original */
-/* Se aplica cuando el elemento está en el viewport */
-.advantage-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Eliminamos la clase 'is-hidden' ya que no queremos que desaparezcan al scrollear hacia arriba */
-
-
-/* Estilos específicos para la sección Ventajas */
-#ventajas .lead {
-    color: var(--color-dark); /* Color oscuro para el texto principal */
-}
-
-/* Asegurar el sombreado */
-
-
-/* ============================================== */
-/* ESTILOS DE HEADER / HERO */
-/* ============================================== */
-
-/* Estilo para la imagen del hero (Ajusta el max-width si es muy grande) */
 .hero-image {
     max-width: 100%;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
-
-    /* === AÑADIDO: Degradado de transparencia en el borde inferior === */
+    /* Degradado de transparencia en el borde inferior */
     mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); /* Para compatibilidad con Webkit */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
 }
 
-/* Ajuste para el texto secundario que hemos añadido */
-.btn-secondary-custom-border {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-    transition: all 0.3s ease;
-}
-
-.btn-secondary-custom-border:hover {
-    background-color: var(--color-primary);
-    color: var(--color-light);
-}
-
-/* ============================================== */
-/* ANIMACIÓN SCROLL REVEAL (VENTAJAS) */
-/* ============================================== */
-
-/* Estado Inicial: Oculto y Ligeramente Desplazado
-   Esta clase no debe estar aplicada por defecto, solo la usaremos cuando
-   el elemento esté fuera de la vista para evitar el "Flash of Unstyled Content" (FOUC).
-   La aplicaremos y quitaremos con JS. */
-.advantage-item {
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transición suave */
-}
-
-/* Estado que aplica el desplazamiento inicial (lo que queremos ocultar al principio) */
-.scroll-start {
-    opacity: 0;
-    transform: translateY(50px); /* Mover 50px hacia abajo */
-}
-
-
-/* Estado Activo: Visible y en Posición Original */
-/* Se aplica cuando el elemento está en el viewport */
-.advantage-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Eliminamos la clase 'is-hidden' ya que no queremos que desaparezcan al scrollear hacia arriba */
-
-
-/* ============================================== */
-/* ESTILOS DE SECCIÓN (AJUSTE DE FONDO) */
-/* ============================================== */
-section {
-    position: relative;
-    min-height: 100vh;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    background-color: var(--color-light); /* Fondo Blanco por defecto */
-}
-/* CAMBIO 1: Revertir #ventajas a sección normal, fondo sólido gris */
+/* B. SECCIÓN VENTAJAS */
 #ventajas {
-    background-color: #FFFFFF; /* Fondo solicitado (Gris Sólido) */
-    /* Remover estilos de tarjeta gigante: max-width, margin, border-radius */
-    min-height: 100vh; /* Restaurar el min-height */
+    background-color: #FFFFFF; /* Fondo original (no #8b8c89) */
+    min-height: 100vh;
+}
+#ventajas .lead {
+    color: var(--color-dark); /* Color oscuro para el texto principal */
 }
 
 /* ============================================== */
-/* NUEVO ESTILO: CARD PARA CADA FILA COMPLETA */
+/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) */
 /* ============================================== */
+
+/* ============================================== */
+/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) */
+/* ============================================== */
+
+/* A. Card de Fila Completa (Contenedor de Texto + Imagen) */
 .advantage-row-card {
-    background-color: #a3cef1; /* Fondo Blanco para que la fila flote */
+    background-color: #a3cef1; /* Color base (Fila 1) */
     border-radius: 20px; 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    padding: 30px; /* Espaciado interno generoso */
-    margin-bottom: 40px; /* Espacio entre las filas (cards) */
+    padding: 30px; 
+    margin-bottom: 40px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- GRADIENTE SUTIL POR FILA --- */
+
+/* Fila 2 (es el 3er hijo dentro del .container, después del h2) */
+.container > .advantage-row-card:nth-child(3) {
+    background-color: #8fc4e0; /* Tono ligeramente más oscuro */
+}
+
+/* Fila 3 (es el 4to hijo) */
+.container > .advantage-row-card:nth-child(4) {
+    background-color: #7eb8dd; /* Tono intermedio */
+}
+
+/* Fila 4 (es el 5to hijo) */
+.container > .advantage-row-card:nth-child(5) {
+    background-color: #68aada; /* Tono más oscuro */
 }
 
 /* Efecto hover sutil para la fila completa */
@@ -283,78 +233,47 @@ section {
     transform: translateY(-3px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
-
-
-/* ============================================== */
-/* ESTILO DE CARD PARA SECCIÓN VENTAJAS (AJUSTE DE CONTRASTE) */
-/* ============================================== */
+/* B. Card de Texto (Contenedor de Título y Párrafo) */
 .advantage-card {
     /* Color de fondo solicitado para la tarjeta de texto */
-    background-color: #6096ba; 
-    /* ... (resto de los estilos de sombra, border-radius, etc., se mantienen) ... */
+    background-color: #FFFFFF; /* Color azul medio oscuro */
     
-    /* Nota: Si la card de texto es parte de la row-card blanca, 
-       podemos simplificar un poco la sombra para no competir */
-    box-shadow: none; /* Quitamos la sombra de la card interna, ya que la fila la tiene */
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+    /* Estilos de Card de Texto */
+    border-radius: 12px; 
+    padding: 30px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Sobreescribe estilos originales de la card de texto para el nuevo diseño */
+    box-shadow: none; 
+    border: 1px solid rgba(255, 255, 255, 0.5); 
 }
 
-/* Ajuste: Quitar el hover de la card interna para que solo flote la fila */
+/* Texto dentro de la card de texto */
+.advantage-card h3 {
+    color: #8b8c89; /* Títulos en blanco para contraste */
+    font-weight: 700;
+}
+.advantage-card p {
+    color: #8b8c89; /* Texto principal en blanco */
+}
+
+/* Efecto hover original eliminado para no interferir con la fila */
 .advantage-card:hover {
     transform: none; 
     box-shadow: none;
 }
 
-/* ... [Resto del CSS] ... */
-.bg-light-section {
-    background-color: var(--bg-light-section); /* Esto hará que el header sea blanco */
-}
-/* ... resto del CSS de estilos de sección ... */
-
 /* ============================================== */
-/* ESTILO DE CARD PARA SECCIÓN VENTAJAS (ESTÉTICA MEJORADA CON NUEVO COLOR) */
+/* 8. ANIMACIÓN SCROLL REVEAL (JS Antiguo) */
 /* ============================================== */
-.advantage-card {
-    /* CAMBIO 2: Nuevo color de fondo para la tarjeta */
-    background-color: #FFFFFF; /* Color solicitado */
-    
-    /* Sombra más estetica y elevada */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), /* Sombra principal más amplia */
-                0 4px 6px rgba(0, 0, 0, 0.05);  /* Sombra más cercana sutil */
-    
-    /* Bordes redondeados sutiles */
-    border-radius: 12px; 
-    
-    /* Espaciado interno generoso */
-    padding: 30px; 
-    
-    /* Transición para la animación al pasar el mouse */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+.advantage-item {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
-
-/* Efecto al pasar el mouse (Mejora estética con interacción) */
-.advantage-card:hover {
-    transform: translateY(-5px); /* Se levanta 5px */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), /* Sombra más intensa al levantarse */
-                0 6px 10px rgba(0, 0, 0, 0.1); 
+.scroll-start {
+    opacity: 0;
+    transform: translateY(50px); 
 }
-
-/* Ajuste para que el texto dentro de la card sea blanco para contrastar con el fondo azul oscuro */
-.advantage-card h3 {
-    color: #6096ba; /* Títulos en blanco para contraste */
-    font-weight: 700;
-}
-.advantage-card p {
-    color: #6096ba; /* Texto principal en blanco */
-}
-
-/* ============================================== */
-/* ESTILO ADICIONALES */
-/* ============================================== */
-
-/* Sombra de texto para hacer que los títulos claros destaquen */
-.text-shadow-custom {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra oscura sutil */
-    color: #6096ba; 
+.advantage-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
