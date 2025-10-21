@@ -356,8 +356,20 @@ section {
 }
 
 /* Efecto Flip al hacer hover/tap (se mantiene igual) */
-.testimonial-card:hover .card-inner {
+/* ---------------------------------------------------- */
+/* ACTIVACIÓN DEL FLIP */
+/* ---------------------------------------------------- */
+
+/* 1. CLASE que se activa con JS (Toque/Click) */
+.testimonial-card.flipped .card-inner {
     transform: rotateY(180deg);
+}
+
+/* 2. ACTIVACIÓN CON HOVER SÓLO EN ESCRITORIO (Dispositivos que NO son táctiles) */
+@media (hover: hover) and (pointer: fine) {
+    .testimonial-card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
 }
 
 /* Estilos de la parte Frontal y Trasera (se mantiene igual) */

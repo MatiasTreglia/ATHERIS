@@ -36,3 +36,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+/* ============================================== */
+/* FUNCIÓN PARA EL EFECTO FLIP EN MÓVILES */
+/* ============================================== */
+function toggleFlip(card) {
+    // Solo activamos si el dispositivo es táctil o si es un click.
+    // Usaremos un chequeo simple de tamaño para asegurarnos de que el hover siga funcionando en desktop
+    
+    // Obtenemos el ancho de la ventana
+    const screenWidth = window.innerWidth;
+
+    // Solo aplicamos el toggle si estamos en un tamaño considerado "móvil" (ejemplo: < 1200px)
+    // Opcional: si quitaste el media query de CSS, esto no sería necesario.
+    // Ya que usamos un chequeo CSS de hover, solo agregamos la clase directamente.
+    
+    // Si la tarjeta ya tiene la clase 'flipped', la quitamos. Si no la tiene, la agregamos.
+    card.classList.toggle('flipped');
+}
+
+// Asegúrate de que esta función esté disponible globalmente, si no estás
+// usando un patrón de módulo estricto. (En tu HTML, se llama desde el global scope).
+
