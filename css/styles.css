@@ -277,3 +277,145 @@ section {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ============================================== */
+/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) */
+/* ============================================== */
+
+/* Contenedor principal: Configuración para el apilamiento responsive */
+.testimonial-carousel {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
+    justify-content: center; /* Centra las tarjetas cuando no ocupan toda la línea */
+    overflow-x: hidden; /* Quita el scroll horizontal */
+    gap: 30px; /* Espacio entre las tarjetas */
+    
+    /* Correcciones de fondo */
+    padding-bottom: 0; 
+    background-color: var(--color-light); 
+    
+    /* Ocultar barra de desplazamiento */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Ocultar scrollbar para navegadores basados en WebKit (Chrome, Safari, Edge) */
+.testimonial-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* ---------------------------------------------------- */
+/* ESTILOS DE LA TARJETA (BASE: Desktop Ancho - 4 tarjetas por fila) */
+/* ---------------------------------------------------- */
+.testimonial-card {
+    /* Cálculo para 4 tarjetas por fila: (100% / 4) - fracción del gap (30px) */
+    width: calc(25% - 23px); 
+    min-width: 200px; /* Asegura un tamaño legible mínimo */
+    height: 400px; 
+    perspective: 1000px;
+    flex-shrink: 0; 
+    border-radius: 15px;
+    
+    /* Sombra sutil corregida */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    background-color: var(--color-light); 
+    overflow: hidden;
+    margin-bottom: 30px; /* Margen inferior para el apilamiento */
+}
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE: TABLETAS/DESKTOP MEDIO (Max 1200px - 2 tarjetas por fila) */
+/* ---------------------------------------------------- */
+@media (max-width: 1200px) {
+    .testimonial-card {
+        /* Cálculo para 2 tarjetas por fila: (100% / 2) - fracción del gap (30px) */
+        width: calc(50% - 15px); 
+    }
+}
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE: MÓVILES (Max 768px - 1 tarjeta por fila) */
+/* ---------------------------------------------------- */
+@media (max-width: 768px) {
+    .testimonial-card {
+        /* Ocupa el 100% del ancho disponible */
+        width: 100%; 
+        height: 350px; /* Altura un poco menor para móvil */
+    }
+}
+
+
+/* Contenedor interior para la rotación (se mantiene igual) */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+}
+
+/* Efecto Flip al hacer hover/tap (se mantiene igual) */
+.testimonial-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Estilos de la parte Frontal y Trasera (se mantiene igual) */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Estilos de la Cara Frontal (se mantiene igual) */
+.card-front {
+    background-color: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.testimonial-label {
+    position: relative;
+    z-index: 2;
+    padding: 15px;
+    /* Degradado sutil para el texto sobre la imagen */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+    color: var(--color-light);
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Estilos de la Cara Trasera (se mantiene igual) */
+.card-back {
+    background-color: var(--color-primary); 
+    color: var(--color-light);
+    transform: rotateY(180deg); 
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.testimonial-quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.testimonial-author {
+    font-weight: 700;
+    line-height: 1.4;
+}
