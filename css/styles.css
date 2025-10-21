@@ -419,3 +419,80 @@ section {
     font-weight: 700;
     line-height: 1.4;
 }
+
+/* ============================================== */
+/* 10. SECCIÓN: CONTACTO */
+/* ============================================== */
+#contacto {
+    background-color: var(--color-primary) !important; /* CAMBIO 1: Nuevo color de fondo: #6096ba */
+}
+
+/* ---------------------------------------------------- */
+/* FORMULARIO */
+/* ---------------------------------------------------- */
+
+/* Estilo para los labels */
+#contacto .form-label {
+    font-weight: 600;
+    color: var(--color-light) !important; /* CAMBIO 2: Asegura que los labels sean blancos */
+}
+
+/* Estilo para los inputs y textareas */
+#contacto .form-control {
+    background-color: #FFFFFF; /* Fondo oscuro para los inputs */
+    border: 1px solid var(--color-light); /* Borde blanco para mayor contraste */
+    color: var(--color-light); /* Texto blanco */
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+/* Estilo del input al enfocar (focus) */
+#contacto .form-control:focus {
+    background-color: #FFFFFF; /* Fondo un poco más claro al enfocar */
+    border-color: var(--color-light); /* Borde de focus en blanco */
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5); /* Sombra de enfoque blanca sutil */
+    color: var(--color-light);
+}
+
+/* ---------------------------------------------------- */
+/* INFORMACIÓN DE CONTACTO */
+/* ---------------------------------------------------- */
+
+/* Estilo para la lista de información de contacto */
+.contact-info li {
+    font-size: 1.1rem;
+    display: flex; 
+    align-items: flex-start; /* Alineación superior para evitar que el texto suba */
+}
+/* Color secundario para los íconos de contacto */
+.contact-info i {
+    color: var(--color-secondary); 
+    font-size: 1.5rem;
+    width: 35px;
+    text-align: center;
+    padding-top: 3px; /* Pequeño ajuste visual */
+}
+/* Estilo y hover para los enlaces de contacto */
+.contact-info a {
+    color: var(--color-light); /* Color blanco para enlaces */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+.contact-info a:hover {
+    color: var(--color-secondary) !important; /* Resalta con color secundario al pasar el mouse */
+}
+
+/* ---------------------------------------------------- */
+/* MAPA */
+/* ---------------------------------------------------- */
+
+.map-placeholder {
+    /* Contenedor del mapa/iframe */
+    border: 3px solid var(--color-secondary); /* Borde secundario para destacar */
+    overflow: hidden;
+    border-radius: 10px;
+}
+.map-placeholder iframe {
+    /* Asegura que el iframe ocupe todo el espacio */
+    display: block;
+}
