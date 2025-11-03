@@ -2,13 +2,20 @@
 /* 0. PALETA DE COLORES Y VARIABLES */
 /* ============================================== */
 :root {
-    --color-primary: #6096ba;    /* Azul Ciel - Títulos / Principal */
-    --color-secondary: #A9D6E5;  /* Azul Claro - Subtítulos / Botones */
-    --color-dark: #000000;       /* Texto General y Títulos */
-    --color-light: #FFFFFF;      /* Background principal */
-    --color-accent: #E0E0E0;     /* Decoraciones/Bordes */
-    --color-text-secondary: #555555; /* Gris suave para textos largos */
-    --bg-light-section: var(--color-light); /* Blanco */
+    --color-primary: #6096ba;
+    /* Azul Ciel - Títulos / Principal */
+    --color-secondary: #A9D6E5;
+    /* Azul Claro - Subtítulos / Botones */
+    --color-dark: #000000;
+    /* Texto General y Títulos */
+    --color-light: #FFFFFF;
+    /* Background principal */
+    --color-accent: #E0E0E0;
+    /* Decoraciones/Bordes */
+    --color-text-secondary: #555555;
+    /* Gris suave para textos largos */
+    --bg-light-section: var(--color-light);
+    /* Blanco */
 }
 
 /* ============================================== */
@@ -16,21 +23,37 @@
 /* ============================================== */
 body {
     /* Establece el color de fondo de toda la página a blanco */
-    background-color: var(--color-light); /* Que es #FFFFFF */
-    color: var(--color-dark); /* Color de texto por defecto (Negro) */
-    font-family: 'Montserrat', sans-serif;
-    padding-top: 72px; /* Espacio para el Navbar fijo */
-    overflow-x: hidden; /* Evita el scroll horizontal */
+    background-color: var(--color-light);
+    /* Que es #FFFFFF */
+    color: var(--color-dark);
+    /* Color de texto por defecto (Negro) */
+
+    /* 💡 CAMBIO DE FUENTE BASE: Open Sans (para párrafos) */
+    font-family: 'Open Sans', sans-serif;
+
+    padding-top: 72px;
+    /* Espacio para el Navbar fijo */
+    overflow-x: hidden;
+    /* Evita el scroll horizontal */
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: var(--color-dark); 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /* 💡 Mantenemos los títulos en Montserrat (coherencia con el diseño anterior) */
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-dark);
     font-weight: 700;
 }
+
+/* ... el resto del CSS ... */
 
 /* Estilo para destacar palabras con el color primario */
 .text-primary-color {
@@ -39,8 +62,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sombra de texto para hacer que los títulos claros destaquen */
 .text-shadow-custom {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra oscura sutil */
-    color: #6096ba; /* Color directo del texto, aunque se sobrescribe en HTML */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    /* Sombra oscura sutil */
+    color: #6096ba;
+    /* Color directo del texto, aunque se sobrescribe en HTML */
 }
 
 /* ============================================== */
@@ -49,26 +74,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Usamos el ID para asegurar que el fondo sea el color primario */
 #main-navbar {
-    background-color: var(--color-primary) !important; /* Fondo: Azul Primario */
+    background-color: var(--color-primary) !important;
+    /* Fondo: Azul Primario */
     border-bottom: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
 /* 1. EL TEXTO DE LA MARCA */
 .navbar-brand {
-    font-size: rem; /* Propiedad incompleta en el código original */
+    font-size: 1.5rem;
+    /* Valor corregido */
 }
 
 /* 2. ENLACES: Texto en blanco */
 .navbar-nav .nav-link {
-    color: var(--color-light) !important; /* Enlaces en Blanco */
+    color: var(--color-light) !important;
+    /* Enlaces en Blanco */
     font-weight: 600;
 }
 
 /* 3. HOVER: e0e0e0 (color accent) */
 .navbar-nav .nav-link:hover {
-    color: var(--color-accent) !important; /* Hover en Gris Claro (#E0E0E0) */
+    color: var(--color-accent) !important;
+    /* Hover en Gris Claro (#E0E0E0) */
 }
 
 /* ============================================== */
@@ -77,13 +106,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Solo se aplica en pantallas de escritorio o mayores (lg) */
 @media (min-width: 992px) {
+
     /* Usamos flexbox en el contenedor principal para centrar el ul */
     #navbarNav {
-        display: flex; 
-        justify-content: center; 
-        width: 100%; 
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
-    
+
     /* Le damos a los links un margen auto para que se centren dentro del espacio */
     #navbarNav .navbar-nav {
         margin-left: auto;
@@ -92,9 +122,9 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Movemos el botón de contacto de vuelta a la derecha */
     #navbarNav .ms-auto {
-        margin-left: 0 !important; 
-        position: absolute; 
-        right: 15px; 
+        margin-left: 0 !important;
+        position: absolute;
+        right: 15px;
     }
 }
 
@@ -104,26 +134,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Botón Primario (Comprar) */
 .btn-primary-custom {
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary);
     color: var(--color-light);
     border: 2px solid var(--color-primary);
     transition: all 0.3s ease;
 }
+
 .btn-primary-custom:hover {
-    background-color: var(--color-dark);
-    border-color: var(--color-dark);
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
     color: var(--color-light);
 }
 
 /* Botón Secundario (Contacto - Blanco) */
 .btn-secondary-custom {
-    background-color: var(--color-light); /* Fondo del Botón en Blanco */
-    color: var(--color-primary); /* Texto del Botón en Azul Primario */
+    background-color: var(--color-light);
+    /* Fondo del Botón en Blanco */
+    color: var(--color-primary);
+    /* Texto del Botón en Azul Primario */
     border: 2px solid var(--color-light);
     transition: all 0.3s ease;
 }
+
 .btn-secondary-custom:hover {
-    background-color: transparent; 
+    background-color: transparent;
     color: var(--color-accent);
     border-color: var(--color-accent);
 }
@@ -135,6 +169,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--color-primary);
     transition: all 0.3s ease;
 }
+
 .btn-secondary-custom-border:hover {
     background-color: var(--color-primary);
     color: var(--color-light);
@@ -148,157 +183,189 @@ section {
     min-height: 100vh;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    background-color: var(--color-light); /* Fondo Blanco por defecto */
+    background-color: var(--color-light);
+    /* Fondo Blanco por defecto */
 }
+
 .bg-light-section {
     background-color: var(--bg-light-section);
 }
+
 .bg-dark-section {
     background-color: var(--color-dark);
 }
 
-/* ============================================== */
+
+
 /* 6. ESTILOS ESPECÍFICOS POR SECCIÓN */
 /* ============================================== */
+/* A. SECCIÓN INICIO/HEADER *
 
-/* A. SECCIÓN INICIO/HEADER */
-#inicio {
+/* ... el resto de la sección header ... */
+#hero {
     background-size: cover;
     background-position: center;
-    color: var(--color-light); 
-    text-shadow: 0 0 5px rgba(0,0,0,0.4); 
     height: 100vh;
 }
-#inicio h1 {
-    color: var(--color-light); /* Título en el header será blanco para contrastar */
+
+#hero h1 {
+    color: var(--color-light);
+    /* Título en el header será blanco para contrastar */
 }
-#inicio p.lead {
-    color: var(--color-secondary); /* Subtítulo con color secundario */
+
+#hero p.lead {
+    /* 💡 CAMBIO DE COLOR Y GROSOR (Mantenido) */
+    font-weight: 500;
+    /* 💡 NUEVO: Limita el ancho del texto (hace el bloque más 'cuadrado') */
+
+    /* Usamos px en lugar de % porque está en el centro del viewport */
+    /* 💡 NUEVO: Centra el bloque de texto limitado */
+    margin-left: auto;
+    margin-right: auto;
+    /* Nota: Asegúrate de que el contenedor del texto en el HTML esté centrado */
 }
+
 .hero-image {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
     /* Degradado de transparencia en el borde inferior */
     mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
 /* B. SECCIÓN VENTAJAS */
 #ventajas {
-    background-color: #FFFFFF; /* Fondo original (no #8b8c89) */
+    background-color: #FFFFFF;
     min-height: 100vh;
 }
+
 #ventajas .lead {
-    color: var(--color-dark); /* Color oscuro para el texto principal */
+    color: var(--color-dark);
 }
 
 /* ============================================== */
-/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) */
+/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) - DISEÑO FLOTANTE */
 /* ============================================== */
 
-/* ============================================== */
-/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) */
-/* ============================================== */
-
-/* A. Card de Fila Completa (Contenedor de Texto + Imagen) */
+/* A. Card de Fila Completa (Contenedor de Texto + Imagen) - LIMPIEZA TOTAL */
 .advantage-row-card {
-    background-color: #a3cef1; /* Color base (Fila 1) */
-    border-radius: 20px; 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    padding: 30px; 
-    margin-bottom: 40px; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ELIMINANDO EL BLOQUE GRANDE SOLICITADO */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 80px;
+    /* Incrementamos el margen para separar filas */
+    transition: none;
 }
 
-/* --- GRADIENTE SUTIL POR FILA --- */
-
-/* Fila 2 (es el 3er hijo dentro del .container, después del h2) */
-.container > .advantage-row-card:nth-child(3) {
-    background-color: #8fc4e0; /* Tono ligeramente más oscuro */
+/* ELIMINACIÓN DE GRADIENTES ANTERIORES */
+.container>.advantage-row-card:nth-child(3),
+.container>.advantage-row-card:nth-child(4),
+.container>.advantage-row-card:nth-child(5) {
+    background-color: transparent;
 }
 
-/* Fila 3 (es el 4to hijo) */
-.container > .advantage-row-card:nth-child(4) {
-    background-color: #7eb8dd; /* Tono intermedio */
-}
-
-/* Fila 4 (es el 5to hijo) */
-.container > .advantage-row-card:nth-child(5) {
-    background-color: #68aada; /* Tono más oscuro */
-}
-
-/* Efecto hover sutil para la fila completa */
 .advantage-row-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-}
-/* B. Card de Texto (Contenedor de Título y Párrafo) */
-.advantage-card {
-    /* Color de fondo solicitado para la tarjeta de texto */
-    background-color: #FFFFFF; /* Color azul medio oscuro */
-    
-    /* Estilos de Card de Texto */
-    border-radius: 12px; 
-    padding: 30px; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Sobreescribe estilos originales de la card de texto para el nuevo diseño */
-    box-shadow: none; 
-    border: 1px solid rgba(255, 255, 255, 0.5); 
-}
-
-/* Texto dentro de la card de texto */
-.advantage-card h3 {
-    color: #8b8c89; /* Títulos en blanco para contraste */
-    font-weight: 700;
-}
-.advantage-card p {
-    color: #8b8c89; /* Texto principal en blanco */
-}
-
-/* Efecto hover original eliminado para no interferir con la fila */
-.advantage-card:hover {
-    transform: none; 
+    transform: none;
     box-shadow: none;
 }
 
-/* ============================================== */
-/* 8. ANIMACIÓN SCROLL REVEAL (JS Antiguo) */
-/* ============================================== */
-.advantage-item {
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-}
-.scroll-start {
-    opacity: 0;
-    transform: translateY(50px); 
-}
-.advantage-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+/* B. Card de Texto (Contenedor de Título y Párrafo) - LIMPIEZA Y TAMAÑO */
+.advantage-card {
+    /* LIMPIEZA TOTAL DEL RECUADRO DE TEXTO INTERNO */
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    /* 💡 NUEVO CÓDIGO: Establece un ancho máximo para el texto */
+    /* El 80% asegura que no se extienda por toda la columna en desktop */
+    max-width: 70%;
+    /* Centra el bloque de texto dentro de su columna */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* ... código de la sección 7 ... */
+
+/* -------------------- TAMAÑO DE TEXTO (Desktop) -------------------- */
+
+/* Títulos grandes y prominentes */
+.advantage-card .advantage-title {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    font-weight: 800;
+    /* Un poco más de peso */
+    /* El título sigue usando Montserrat por herencia de h3 */
+}
+
+/* Párrafo grande para ocupar más pantalla */
+.advantage-card .advantage-text {
+
+    /* 💡 CAMBIO DE COLOR: Usamos un gris muy oscuro (mejor contraste) */
+    color: #222222;
+
+    /* 💡 CAMBIO DE GROSOR: Aumentamos el peso a Semibold */
+    font-weight: 500;
+
+    font-size: 1.3rem;
+    line-height: 1.6;
+    /* Mejoramos la lectura */
+    /* El párrafo usa Open Sans por herencia del body */
+}
+
+/* -------------------- TAMAÑO DE TEXTO (Móvil/Tablet) -------------------- */
+@media (max-width: 992px) {
+    .advantage-card .advantage-title {
+        font-size: 2rem;
+        /* Títulos más pequeños en móvil */
+    }
+
+    .advantage-card .advantage-text {
+        font-size: 1.1rem;
+    }
+}
+
+
+
+
 /* ============================================== */
-/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) */
+/* 8. ELIMINACIÓN DE ESTILOS DE SCROLL REVEAL ANTIGUOS */
+/* ============================================== */
+/* Se asume que estos se manejan ahora por GSAP */
+.advantage-item {
+    transition: none;
+}
+
+.scroll-start {
+    opacity: 0;
+    transform: none;
+}
+
+.advantage-item.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ============================================== */
+/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) - Mantenidos */
 /* ============================================== */
 
 /* Contenedor principal: Configuración para el apilamiento responsive */
 .testimonial-carousel {
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
-    justify-content: center; /* Centra las tarjetas cuando no ocupan toda la línea */
-    overflow-x: hidden; /* Quita el scroll horizontal */
-    gap: 30px; /* Espacio entre las tarjetas */
-    
-    /* Correcciones de fondo */
-    padding-bottom: 0; 
-    background-color: var(--color-light); 
-    
-    /* Ocultar barra de desplazamiento */
-    scrollbar-width: none; /* Firefox */
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+    gap: 30px;
+    padding-bottom: 0;
+    background-color: var(--color-light);
+    scrollbar-width: none;
 }
 
-/* Ocultar scrollbar para navegadores basados en WebKit (Chrome, Safari, Edge) */
 .testimonial-carousel::-webkit-scrollbar {
     display: none;
 }
@@ -307,19 +374,16 @@ section {
 /* ESTILOS DE LA TARJETA (BASE: Desktop Ancho - 4 tarjetas por fila) */
 /* ---------------------------------------------------- */
 .testimonial-card {
-    /* Cálculo para 4 tarjetas por fila: (100% / 4) - fracción del gap (30px) */
-    width: calc(25% - 23px); 
-    min-width: 200px; /* Asegura un tamaño legible mínimo */
-    height: 400px; 
+    width: calc(25% - 23px);
+    min-width: 200px;
+    height: 400px;
     perspective: 1000px;
-    flex-shrink: 0; 
+    flex-shrink: 0;
     border-radius: 15px;
-    
-    /* Sombra sutil corregida */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
-    background-color: var(--color-light); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-light);
     overflow: hidden;
-    margin-bottom: 30px; /* Margen inferior para el apilamiento */
+    margin-bottom: 30px;
 }
 
 /* ---------------------------------------------------- */
@@ -327,8 +391,7 @@ section {
 /* ---------------------------------------------------- */
 @media (max-width: 1200px) {
     .testimonial-card {
-        /* Cálculo para 2 tarjetas por fila: (100% / 2) - fracción del gap (30px) */
-        width: calc(50% - 15px); 
+        width: calc(50% - 15px);
     }
 }
 
@@ -337,9 +400,8 @@ section {
 /* ---------------------------------------------------- */
 @media (max-width: 768px) {
     .testimonial-card {
-        /* Ocupa el 100% del ancho disponible */
-        width: 100%; 
-        height: 350px; /* Altura un poco menor para móvil */
+        width: 100%;
+        height: 350px;
     }
 }
 
@@ -373,7 +435,8 @@ section {
 }
 
 /* Estilos de la parte Frontal y Trasera (se mantiene igual) */
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -386,11 +449,12 @@ section {
 
 /* Estilos de la Cara Frontal (se mantiene igual) */
 .card-front {
-    background-color: transparent; 
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
+
 .card-img {
     width: 100%;
     height: 100%;
@@ -400,6 +464,7 @@ section {
     left: 0;
     z-index: 1;
 }
+
 .testimonial-label {
     position: relative;
     z-index: 2;
@@ -413,30 +478,129 @@ section {
 
 /* Estilos de la Cara Trasera (se mantiene igual) */
 .card-back {
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary);
     color: var(--color-light);
-    transform: rotateY(180deg); 
+    transform: rotateY(180deg);
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
 }
+
 .testimonial-quote {
     font-size: 1.1rem;
     font-style: italic;
     margin-bottom: 20px;
 }
+
 .testimonial-author {
     font-weight: 700;
     line-height: 1.4;
 }
 
+/* Estilos de la Cara Frontal (se mantiene igual) */
+.card-front {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 /* ============================================== */
-/* 10. SECCIÓN: CONTACTO */
+/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) - Mantenidos */
+/* ============================================== */
+
+/* ... (código existente de la Sección 9 antes del @media) ... */
+
+
+/* 💡 NUEVO: INDICADOR VISUAL DE ESQUINA DOBLADA "PAGE CURL" (SOLO EN MOBILE) */
+@media (max-width: 992px) {
+    .testimonial-card {
+        position: relative;
+    }
+
+    /* ---------------------------------------------------- */
+    /* 1. MÁSCARA DE FONDO BLANCO (Tapa la imagen de la tarjeta) */
+    /* ---------------------------------------------------- */
+    .testimonial-card .card-front::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+
+        /* El tamaño de esta máscara debe ser igual o mayor al del pliegue (50px) */
+        border-style: solid;
+        border-width: 50px 50px 0 0;
+
+        /* Círculo interior invisible y el resto blanco (el borde derecho es el que tapa) */
+        border-color: transparent var(--color-light) transparent transparent;
+
+        z-index: 9;
+        /* Debe estar justo debajo del pliegue (::before) */
+        pointer-events: none;
+        /* No debe interferir con el clic */
+    }
+
+    /* ---------------------------------------------------- */
+    /* 2. EL PLIEGUE BLANCO CON SOMBRA DE PROFUNDIDAD (La solapa visible) */
+    /* ---------------------------------------------------- */
+    .testimonial-card .card-front::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+
+        /* Crea un triángulo con bordes. Tamaño del fold: 50px */
+        border-style: solid;
+        border-width: 50px 50px 0 0;
+
+        /* La parte visible (reverso) es el borde superior (COLOR BLANCO) */
+        border-color: var(--color-primary) transparent transparent transparent;
+
+        /* TRUCO: Box-shadow crea la sombra de profundidad. */
+        /* La sombra se proyecta sobre la MÁSCARA BLANCA (::after) o el resto de la imagen. */
+        box-shadow:
+            /* Sombra principal: Proyecta la sensación de profundidad */
+            -5px 5px 10px -5px rgba(0, 0, 0, 0.4),
+            /* Sombra de borde: Define la línea de pliegue */
+            -1px 1px 2px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        /* Debe estar encima de la máscara */
+        cursor: pointer;
+        border-radius: 7px;
+    }
+
+    /* ---------------------------------------------------- */
+    /* OCULTAR/MOSTRAR AL GIRAR */
+    /* ---------------------------------------------------- */
+
+    .testimonial-card.flipped .card-front::before,
+    .testimonial-card.flipped .card-front::after {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .testimonial-card .card-front::before,
+    .testimonial-card .card-front::after {
+        transition: opacity 0.3s ease;
+    }
+}
+
+
+
+
+
+/* ============================================== */
+/* 10. SECCIÓN: CONTACTO - Mantenidos */
 /* ============================================== */
 #contacto {
-    background-color: var(--color-primary) !important; /* CAMBIO 1: Nuevo color de fondo: #6096ba */
+    background-color: var(--color-primary) !important;
+    /* CAMBIO 1: Nuevo color de fondo: #6096ba */
 }
 
 /* ---------------------------------------------------- */
@@ -446,23 +610,31 @@ section {
 /* Estilo para los labels */
 #contacto .form-label {
     font-weight: 600;
-    color: var(--color-light) !important; /* CAMBIO 2: Asegura que los labels sean blancos */
+    color: var(--color-light) !important;
+    /* CAMBIO 2: Asegura que los labels sean blancos */
 }
 
 /* Estilo para los inputs y textareas */
 #contacto .form-control {
-    background-color: #FFFFFF; /* Fondo oscuro para los inputs */
-    border: 1px solid var(--color-light); /* Borde blanco para mayor contraste */
-    color: var(--color-light); /* Texto blanco */
+    background-color: #FFFFFF;
+    /* Fondo oscuro para los inputs */
+    border: 1px solid var(--color-light);
+    /* Borde blanco para mayor contraste */
+    color: var(--color-light);
+    /* Texto blanco */
     padding: 10px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
+
 /* Estilo del input al enfocar (focus) */
 #contacto .form-control:focus {
-    background-color: #FFFFFF; /* Fondo un poco más claro al enfocar */
-    border-color: var(--color-light); /* Borde de focus en blanco */
-    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5); /* Sombra de enfoque blanca sutil */
+    background-color: #FFFFFF;
+    /* Fondo un poco más claro al enfocar */
+    border-color: var(--color-light);
+    /* Borde de focus en blanco */
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5);
+    /* Sombra de enfoque blanca sutil */
     color: var(--color-light);
 }
 
@@ -473,25 +645,32 @@ section {
 /* Estilo para la lista de información de contacto */
 .contact-info li {
     font-size: 1.1rem;
-    display: flex; 
-    align-items: flex-start; /* Alineación superior para evitar que el texto suba */
+    display: flex;
+    align-items: flex-start;
+    /* Alineación superior para evitar que el texto suba */
 }
+
 /* Color secundario para los íconos de contacto */
 .contact-info i {
-    color: var(--color-secondary); 
+    color: var(--color-secondary);
     font-size: 1.5rem;
     width: 35px;
     text-align: center;
-    padding-top: 3px; /* Pequeño ajuste visual */
+    padding-top: 3px;
+    /* Pequeño ajuste visual */
 }
+
 /* Estilo y hover para los enlaces de contacto */
 .contact-info a {
-    color: var(--color-light); /* Color blanco para enlaces */
+    color: var(--color-light);
+    /* Color blanco para enlaces */
     text-decoration: underline;
     transition: color 0.3s ease;
 }
+
 .contact-info a:hover {
-    color: var(--color-secondary) !important; /* Resalta con color secundario al pasar el mouse */
+    color: var(--color-secondary) !important;
+    /* Resalta con color secundario al pasar el mouse */
 }
 
 /* ---------------------------------------------------- */
@@ -500,11 +679,14 @@ section {
 
 .map-placeholder {
     /* Contenedor del mapa/iframe */
-    border: 3px solid var(--color-secondary); /* Borde secundario para destacar */
+    border: 3px solid var(--color-secondary);
+    /* Borde secundario para destacar */
     overflow: hidden;
     border-radius: 10px;
 }
+
 .map-placeholder iframe {
     /* Asegura que el iframe ocupe todo el espacio */
     display: block;
 }
+
