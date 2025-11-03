@@ -690,3 +690,45 @@ section {
     display: block;
 }
 
+/* ============================================== */
+/* 11. SECCIÓN: COMPRAR (Pricing Cards) */
+/* ============================================== */
+
+#comprar {
+    /* Fondo oscuro para que las cards blancas resalten */
+    background-color: var(--color-dark) !important;
+}
+
+#comprar h2 {
+    color: var(--color-light); /* Título de sección en blanco */
+}
+
+.pricing-card {
+    background-color: var(--color-light); /* Fondo de la tarjeta en blanco */
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    border: 3px solid var(--color-primary); /* Borde primario al pasar el mouse */
+}
+
+.pricing-card h3, .pricing-card h5 {
+    color: var(--color-dark) !important;
+}
+
+/* Estilo para los botones de selección de talle */
+.talle-btn {
+    /* Hereda .btn-secondary-custom-border del CSS existente */
+    transition: all 0.2s;
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-secondary);
+}
+
+.talle-btn.selected {
+    background-color: var(--color-primary) !important;
+    color: var(--color-light) !important;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
