@@ -199,7 +199,7 @@ section {
 
 /* 6. ESTILOS ESPECÍFICOS POR SECCIÓN */
 /* ============================================== */
-/* A. SECCIÓN INICIO/HEADER *
+/* A. SECCIÓN INICIO/HEADER */
 
 /* ... el resto de la sección header ... */
 #hero {
@@ -700,20 +700,24 @@ section {
 }
 
 #comprar h2 {
-    color: var(--color-light); /* Título de sección en blanco */
+    color: var(--color-light);
+    /* Título de sección en blanco */
 }
 
 .pricing-card {
-    background-color: var(--color-light); /* Fondo de la tarjeta en blanco */
+    background-color: var(--color-light);
+    /* Fondo de la tarjeta en blanco */
     border: 3px solid transparent;
     transition: all 0.3s ease;
 }
 
 .pricing-card:hover {
-    border: 3px solid var(--color-primary); /* Borde primario al pasar el mouse */
+    border: 3px solid var(--color-primary);
+    /* Borde primario al pasar el mouse */
 }
 
-.pricing-card h3, .pricing-card h5 {
+.pricing-card h3,
+.pricing-card h5 {
     color: var(--color-dark) !important;
 }
 
