@@ -257,121 +257,124 @@
 
         </div>
     </section>
+<section id="comprar" class="py-5 bg-dark-section text-white">
+    <div class="container py-5">
+        <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-down">
+            Opciones de Compra
+        </h2>
 
-    <section id="comprar" class="py-5 bg-dark-section text-white">
-        <div class="container py-5">
-            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-down">
-                Opciones de Compra
-            </h2>
+        <div class="row justify-content-center g-4">
 
-            <div class="row justify-content-center g-4">
+            <div class="col-lg-5 col-md-6" data-aos="fade-right" data-aos-delay="100">
+                <div class="card h-100 p-4 border-0 shadow-lg pricing-card" id="kit-card">
+                    <div class="card-body text-center">
+                        <img src="./img/tallescompletos.png" alt="Kit Completo 5 Mascarillas" class="img-fluid mb-4"
+                            style="max-height: 200px; object-fit: contain;">
+                        <h3 class="fw-bold mb-3 text-primary-color">Kit Completo (5 Mascarillas)</h3>
 
-                <div class="col-lg-5 col-md-6" data-aos="fade-right" data-aos-delay="100">
-                    <div class="card h-100 p-4 border-0 shadow-lg pricing-card" id="kit-card">
-                        <div class="card-body text-center">
-                            <img src="./img/tallescompletos.png" alt="Kit Completo 5 Mascarillas" class="img-fluid mb-4"
-                                style="max-height: 200px; object-fit: contain;">
-                            <h3 class="fw-bold mb-3 text-primary-color">Kit Completo (5 Mascarillas)</h3>
+                        <p class="text-secondary">Incluye una mascarilla en cada talle: XS, S, M, L y XL.</p>
 
-                            <p class="text-secondary">Incluye una mascarilla en cada talle: XS, S, M, L y XL.</p>
-
-                            <div class="price-display mb-3">
-                                <span class="display-4 fw-bolder text-dark">$<span id="kit-price-unit">50</span></span>
-                                <span class="text-muted"> USD (c/u)</span>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="kit-quantity" class="form-label text-dark fw-bold">Cantidad de Kits a
-                                    Comprar:</label>
-                                <input type="number" id="kit-quantity" class="form-control text-center" value="0"
-                                    min="0" max="10"
-                                    style="max-width: 120px; margin: 0 auto; color: var(--color-dark);">
-                            </div>
-
-                            <button class="btn btn-primary-custom btn-lg w-100" id="kit-add-to-cart-btn"
-                                style="display: none;">
-                                Añadir Kit(s)
-                            </button>
+                        <div class="price-display mb-3">
+                            <span class="display-4 fw-bolder text-dark">$<span id="kit-price-unit">50</span></span>
+                            <span class="text-muted"> USD (c/u)</span>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-5 col-md-6" data-aos="fade-left" data-aos-delay="200">
-                    <div class="card h-100 p-4 border-0 shadow-lg pricing-card" id="individual-card">
-                        <div class="card-body text-start">
-                            <h3 class="fw-bold mb-4 text-dark">Compra Individual ($20/unidad)</h3>
-
-                            <div class="talle-selector mb-4">
-                                <h5 class="text-dark fw-bold mb-3">Selecciona la cantidad por Talle:</h5>
-                                <div class="list-group list-group-flush">
-
-                                    <div
-                                        class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
-                                        <span class="text-dark fw-bold">Talle XS</span>
-                                        <input type="number" data-talle="XS" data-price="20"
-                                            class="form-control talle-quantity-input text-center" value="0" min="0"
-                                            max="10" style="width: 70px; color: var(--color-dark);">
-                                    </div>
-
-                                    <div
-                                        class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
-                                        <span class="text-dark fw-bold">Talle S</span>
-                                        <input type="number" data-talle="S" data-price="20"
-                                            class="form-control talle-quantity-input text-center" value="0" min="0"
-                                            max="10" style="width: 70px; color: var(--color-dark);">
-                                    </div>
-
-                                    <div
-                                        class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
-                                        <span class="text-dark fw-bold">Talle M</span>
-                                        <input type="number" data-talle="M" data-price="20"
-                                            class="form-control talle-quantity-input text-center" value="0" min="0"
-                                            max="10" style="width: 70px; color: var(--color-dark);">
-                                    </div>
-
-                                    <div
-                                        class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
-                                        <span class="text-dark fw-bold">Talle L</span>
-                                        <input type="number" data-talle="L" data-price="20"
-                                            class="form-control talle-quantity-input text-center" value="0" min="0"
-                                            max="10" style="width: 70px; color: var(--color-dark);">
-                                    </div>
-
-                                    <div
-                                        class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom-0 px-0 py-2">
-                                        <span class="text-dark fw-bold">Talle XL</span>
-                                        <input type="number" data-talle="XL" data-price="20"
-                                            class="form-control talle-quantity-input text-center" value="0" min="0"
-                                            max="10" style="width: 70px; color: var(--color-dark);">
-                                    </div>
-
-                                </div>
-                            </div>
-
+                        <div class="mb-4">
+                            <label for="kit-quantity" class="form-label text-dark fw-bold">Cantidad de Kits a
+                                Comprar:</label>
+                            <input type="number" 
+                                id="kit-quantity" 
+                                class="form-control text-center talle-quantity-input" 
+                                value="0"
+                                min="0" 
+                                max="10"
+                                data-name="Kit Completo (5 Mascarillas)"
+                                data-price="50"
+                                style="max-width: 120px; margin: 0 auto; color: var(--color-dark);">
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-10 text-center">
-                    <div class="bg-light p-4 rounded-3 shadow-sm">
-                        <h4 class="text-dark fw-bold mb-3">Total Estimado del Carrito: <span id="cart-total"
-                                class="text-primary-color">$0</span> USD</h4>
-                                
-                        <button id="final-checkout-btn" class="btn btn-success btn-lg px-5 disabled">
-                            <i class="fas fa-shopping-cart me-2"></i> Ir a Pagar con Mercado Pago
+                        <button class="btn btn-primary-custom btn-lg w-100" id="kit-add-to-cart-btn"
+                            style="display: none;">
+                            Añadir Kit(s)
                         </button>
-                        <!-- Container para o botão de pagamento -->
-                        <div id="walletBrick_container"></div>
-                        <p class="mt-2 text-muted small text-dark">Será redirigido a un link de Mercado Pago para
-                            concretar la transferencia.</p>
                     </div>
                 </div>
             </div>
 
+            <div class="col-lg-5 col-md-6" data-aos="fade-left" data-aos-delay="200">
+                <div class="card h-100 p-4 border-0 shadow-lg pricing-card" id="individual-card">
+                    <div class="card-body text-start">
+                        <h3 class="fw-bold mb-4 text-dark">Compra Individual ($20/unidad)</h3>
+
+                        <div class="talle-selector mb-4">
+                            <h5 class="text-dark fw-bold mb-3">Selecciona la cantidad por Talle:</h5>
+                            <div class="list-group list-group-flush">
+
+                                <div
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
+                                    <span class="text-dark fw-bold">Talle XS</span>
+                                    <input type="number" data-talle="XS" data-price="20"
+                                        class="form-control talle-quantity-input text-center" value="0" min="0"
+                                        max="10" style="width: 70px; color: var(--color-dark);">
+                                </div>
+
+                                <div
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
+                                    <span class="text-dark fw-bold">Talle S</span>
+                                    <input type="number" data-talle="S" data-price="20"
+                                        class="form-control talle-quantity-input text-center" value="0" min="0"
+                                        max="10" style="width: 70px; color: var(--color-dark);">
+                                </div>
+
+                                <div
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
+                                    <span class="text-dark fw-bold">Talle M</span>
+                                    <input type="number" data-talle="M" data-price="20"
+                                        class="form-control talle-quantity-input text-center" value="0" min="0"
+                                        max="10" style="width: 70px; color: var(--color-dark);">
+                                </div>
+
+                                <div
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom px-0 py-2">
+                                    <span class="text-dark fw-bold">Talle L</span>
+                                    <input type="number" data-talle="L" data-price="20"
+                                        class="form-control talle-quantity-input text-center" value="0" min="0"
+                                        max="10" style="width: 70px; color: var(--color-dark);">
+                                </div>
+
+                                <div
+                                    class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-bottom-0 px-0 py-2">
+                                    <span class="text-dark fw-bold">Talle XL</span>
+                                    <input type="number" data-talle="XL" data-price="20"
+                                        class="form-control talle-quantity-input text-center" value="0" min="0"
+                                        max="10" style="width: 70px; color: var(--color-dark);">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10 text-center">
+                <div class="bg-light p-4 rounded-3 shadow-sm">
+                    <h4 class="text-dark fw-bold mb-3">Total Estimado del Carrito: <span id="cart-total"
+                            class="text-primary-color">$0</span> USD</h4>
+                    <button id="final-checkout-btn" class="btn btn-success btn-lg px-5 disabled">
+                        <i class="fas fa-shopping-cart me-2"></i> Ir a Pagar con Mercado Pago
+                    </button>
+                    <div id="walletBrick_container"></div>
+                    <p class="mt-2 text-muted small text-dark">Será redirigido a un link de Mercado Pago para
+                        concretar la transferencia.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
     <section id="contacto" class="py-5 text-white">

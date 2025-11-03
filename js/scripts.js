@@ -136,6 +136,56 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    
+    // ==============================================
+// NUEVO EFECTO 5: CÁLCULO DEL CARRITO DE COMPRA MEJORADO
+// ==============================================
 
+const talleInputs = document.querySelectorAll('.talle-quantity-input');
+const cartTotalElement = document.getElementById('cart-total'); // Total de PRECIO
+const totalItemsCountElement = document.getElementById('total-productos-count'); // Total de UNIDADES
+const checkoutBtn = document.getElementById('final-checkout-btn');
+
+function updateCartTotal() {
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    talleInputs.forEach(input => {
+        // Asegúrate de que el input tenga data-price="20" en el HTML
+        const quantity = parseInt(input.value) || 0;
+        const price = parseFloat(input.getAttribute('data-price')) || 0; 
+        
+        totalItems += quantity;
+        totalPrice += quantity * price;
+    });
+
+    // 1. Actualizar el PRECIO TOTAL (en el span con id="cart-total")
+    cartTotalElement.textContent = `$${totalPrice}`;
+    
+    // 2. Actualizar la CANTIDAD TOTAL DE PRODUCTOS (en el span con id="total-productos-count")
+    totalItemsCountElement.textContent = totalItems;
+
+
+    // Habilitar/Deshabilitar el botón de pago
+    if (totalItems > 0) {
+        checkoutBtn.classList.remove('disabled');
+        checkoutBtn.setAttribute('data-total-items', totalItems); // Guardar info
+    } else {
+        checkoutBtn.classList.add('disabled');
+        checkoutBtn.removeAttribute('data-total-items');
+    }
+
+    return totalPrice; 
+}
+
+// Escuchar cambios en todos los inputs de cantidad por talle
+talleInputs.forEach(input => {
+    input.addEventListener('input', updateCartTotal);
+    input.addEventListener('change', updateCartTotal); 
 });
 
+// Inicializar el total al cargar la página
+updateCartTotal();
+
+
+});
