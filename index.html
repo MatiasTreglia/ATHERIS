@@ -358,6 +358,10 @@
                     <div class="bg-light p-4 rounded-3 shadow-sm">
                         <h4 class="text-dark fw-bold mb-3">Total Estimado del Carrito: <span id="cart-total"
                                 class="text-primary-color">$0</span> USD</h4>
+                                
+                        <button id="final-checkout-btn" class="btn btn-success btn-lg px-5 disabled">
+                            <i class="fas fa-shopping-cart me-2"></i> Ir a Pagar con Mercado Pago
+                        </button>
                         <!-- Container para o botão de pagamento -->
                         <div id="walletBrick_container"></div>
                         <p class="mt-2 text-muted small text-dark">Será redirigido a un link de Mercado Pago para
@@ -425,8 +429,6 @@
             </div>
         </div>
     </section>
-
-    
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
         // Configure sua chave pública do Mercado Pago
