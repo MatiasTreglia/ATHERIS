@@ -590,7 +590,31 @@ section {
 }
 
 
+/* SOLUCIÓN: Anular el min-height: 100vh
+       Y reducir los paddings SÓLO en pantallas grandes.
+    */
+    @media (min-width: 1201px) {
+        
+        #casodeexito {
+            /* 1. AQUÍ ESTÁ LA SOLUCIÓN: 
+               Anula el min-height: 100vh para que la sección 
+               mida solo lo que mide su contenido. */
+            min-height: auto; 
+            
+            /* 2. Mantenemos el padding-bottom reducido */
+            padding-bottom: 2rem; 
+        }
 
+        /* 3. Mantenemos el padding-top reducido */
+        #comprar {
+            padding-top: 2rem;
+        }
+    }
+
+
+/* ============================================== */
+/* 10. SECCIÓN: CONTACTO - Mantenidos */
+/* ============================================== */
 
 
 /* ============================================== */
