@@ -696,7 +696,7 @@ section {
 
 #comprar {
     /* Fondo oscuro para que las cards blancas resalten */
-    background-color: var(--color-dark) !important;
+    background-color: var(--color-light) !important;
 }
 
 #comprar h2 {
