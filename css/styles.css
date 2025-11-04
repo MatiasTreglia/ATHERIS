@@ -181,8 +181,6 @@ h6 {
 section {
     position: relative;
     min-height: 100vh;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
     background-color: var(--color-light);
     /* Fondo Blanco por defecto */
 }
@@ -255,7 +253,7 @@ section {
     border-radius: 0;
     box-shadow: none;
     padding: 0;
-    margin-bottom: 80px;
+    margin-bottom: 10px;
     /* Incrementamos el margen para separar filas */
     transition: none;
 }
