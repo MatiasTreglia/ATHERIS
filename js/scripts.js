@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 0.9,
         ease: "power1.in",
     });
-
 // ==============================================
 // EFECTO 2: VENTAJAS (Entrada Secuencial Lenta y Escalonada)
 // ==============================================
@@ -42,48 +41,52 @@ advantageRows.forEach((row, i) => {
         scrollTrigger: {
             trigger: row,
             
-            // 👇 AQUÍ ESTÁN LOS AJUSTES 👇
-
             // 1. Punto de "Aparición" (bajando)
-            start: "top 70%", 
+            // (Mantenemos el 60% que te gustó)
+            start: "top 60%", 
             
-            // 2. Punto de "Desaparición" (subiendo)
-            end: "top 40%", 
+            // 2. ELIMINAMOS 'end' y 'scrub'
+            // Ya no atamos la animación al scroll.
+            // end: "top 40%", 
+            // scrub: 1,
             
-            // 3. Nuevas acciones para los 2 puntos
-            toggleActions: "restart none reverse reset",
-            scrub: 7,
+            // 3. Volvemos a 'toggleActions' para un efecto "play-and-stop"
+            // (restart) se activa al bajar
+            // (reverse) se activa al salir por arriba
+            toggleActions: "restart none none reverse",
             
-            // 4. Descomenta "markers" para ver las líneas de start y end
             // markers: true, 
         }
     });
 
     // --- SECUENCIA DE ANIMACIÓN USANDO .from() ---
+    
+    // 👇 4. AJUSTE DE VELOCIDAD: 
+    // Ponemos todas las duraciones en 1.0 (1000ms) para igualar a AOS
 
-    // Paso 1: Título (Entrada más rápida para captar la atención)
+    // Paso 1: Título
     tl.from(title, {
         opacity: 0,
         x: enterFromX,
-        duration: 1.0,
+        duration: 1.0, // <-- Duración de 1 segundo
         ease: "power2.out",
     }, 0); // Comienza en el tiempo 0
 
-    // Paso 2: Imagen (Entra después del título, con una duración más larga para un movimiento visible)
+    // Paso 2: Imagen
     tl.from(image, {
         opacity: 0,
-        x: enterFromX * -1, // Sigue entrando desde el lado opuesto
-        duration: 1.5,
+        x: enterFromX * -1, 
+        duration: 1.0, // <-- Duración de 1 segundo
         ease: "power3.out"
     }, 0.2); // Comienza 0.2s después del título
 
-    // Paso 3: Texto (Entra después de la imagen, con una duración moderada)
+    // Paso 3: Texto
     tl.from(text, {
         opacity: 0,
         x: enterFromX,
-        duration: 1.2,
+        duration: 1.0, // <-- Duración de 1 segundo
         ease: "power2.out",
-    }, 0.5); // Comienza 0.5s después del título (y 0.3s después de la imagen)
+    }, 0.5); // Comienza 0.5s (0.3s después de la imagen)
 });
 
     // ==============================================
