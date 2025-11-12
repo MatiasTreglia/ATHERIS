@@ -98,150 +98,172 @@
 
 
     <section id="checkout-section">
-        <div class="container">
+    <div class="container">
 
-            <div class="row g-5">
+        <div class="row g-5">
 
-                <div class="col-lg-7">
-                    <h2 class="mb-4 fw-bold">Detalles de Facturación y Envío</h2>
+            <div class="col-lg-7">
+                <h2 class="mb-4 fw-bold">Detalles de Facturación y Envío</h2>
 
-                    <form id="checkout-form" name="checkout-form" method="POST">
+                <form id="checkout-form" name="checkout-form" method="POST">
 
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="email" class="form-label">Dirección de correo electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="tu@email.com" required>
-                            </div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="email" class="form-label">Dirección de correo electrónico</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="tu@email.com" required>
+                        </div>
 
-                            <div class="col-sm-6">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            </div>
+                        <div class="col-sm-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
 
-                            <div class="col-sm-6">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required>
-                            </div>
+                        <div class="col-sm-6">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="apellido" name="apellido" required>
+                        </div>
 
-                            <div class="col-12">
-                                <label for="empresa" class="form-label">Nombre de la empresa <span
-                                        class="text-muted">(Opcional)</span></label>
-                                <input type="text" class="form-control" id="empresa" name="empresa">
-                            </div>
+                        <div class="col-12">
+                            <label for="empresa" class="form-label">Nombre de la empresa <span
+                                    class="text-muted">(Opcional)</span></label>
+                            <input type="text" class="form-control" id="empresa" name="empresa">
+                        </div>
 
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="factura-a-check"
-                                        name="solicita_factura_a" value="Si">
-                                    <label class="form-check-label" for="factura-a-check">¿Necesita Factura A?
-                                        (Opcional)</label>
-                                </div>
-                            </div>
-
-                            <div class="row g-3" id="factura-a-fields">
-                                <div class="col-sm-6">
-                                    <label for="condicion-iva" class="form-label">Condición ante IVA</label>
-                                    <input type="text" class="form-control" id="condicion-iva" name="condicion_iva">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="cuit" class="form-label">CUIT</label>
-                                    <input type="text" class="form-control" id="cuit" name="cuit">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label for="pais" class="form-label">País</label>
-                                <input type="text" class="form-control" id="pais" name="pais" value="Argentina"
-                                    required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="calle" class="form-label">Calle</label>
-                                <input type="text" class="form-control" id="calle" name="calle" required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="direccion-extra" class="form-label">Altura, piso y departamento</label>
-                                <input type="text" class="form-control" id="direccion-extra" name="altura_piso_depto"
-                                    required>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="provincia" class="form-label">Provincia</label>
-                                <input type="text" class="form-control" id="provincia" name="provincia" required>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="codigo-postal" class="form-label">Código Postal</label>
-                                <input type="text" class="form-control" id="codigo-postal" name="codigo_postal"
-                                    required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" id="telefono" name="telefono"
-                                    placeholder="+54 9 11 1234-5678" required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="notas" class="form-label">Notas del pedido <span
-                                        class="text-muted">(Opcional)</span></label>
-                                <textarea class="form-control" id="notas" name="notas" rows="4"></textarea>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="factura-a-check"
+                                    name="solicita_factura_a" value="on">
+                                <label class="form-check-label" for="factura-a-check">¿Necesita Factura A?</label>
                             </div>
                         </div>
 
-                        <input type="hidden" name="pedido_detalles" id="hidden-pedido-detalles">
-                        <input type="hidden" name="pedido_total" id="hidden-pedido-total">
-                        <input type="hidden" name="_subject" value="¡Nueva Orden de Compra ATHERIS!">
+                        <div class="row g-3" id="factura-a-fields">
+                            
+                            <div class="col-md-6">
+                                <label for="condicion_iva" class="form-label">Condición ante el IVA</label>
+                                <select class="form-select" name="condicion_iva" id="condicion_iva">
+                                    <option value="" selected disabled>Selecciona una opción...</option>
+                                    <option value="IVA Responsable Inscripto">IVA Responsable Inscripto</option>
+                                    <option value="IVA Responsable no Inscripto">IVA Responsable no Inscripto</option>
+                                    <option value="IVA no Responsable">IVA no Responsable</option>
+                                    <option value="IVA Sujeto Exento">IVA Sujeto Exento</option>
+                                    <option value="Responsable Monotributo">Responsable Monotributo</option>
+                                    <option value="Sujeto no Categorizado">Sujeto no Categorizado</option>
+                                    <option value="Proveedor del Exterior">Proveedor del Exterior</option>
+                                    <option value="Cliente del Exterior">Cliente del Exterior</option>
+                                    <option value="IVA Liberado – Ley N° 19.640">IVA Liberado – Ley N° 19.640</option>
+                                    <option value="IVA Responsable Inscripto – Agente de Percepción">IVA Responsable Inscripto – Agente de Percepción</option>
+                                    <option value="Pequeño Contribuyente Eventual">Pequeño Contribuyente Eventual</option>
+                                    <option value="Monotributista Social">Monotributista Social</option>
+                                    <option value="Pequeño Contribuyente Eventual Social">Pequeño Contribuyente Eventual Social</option>
+                                    <option value="Consumidor Final">Consumidor Final</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <label for="cuit" class="form-label">CUIT</label>
+                                <input type="tel" class="form-control" id="cuit" name="cuit"
+                                    pattern="[0-9]+" 
+                                    title="Ingresa solo números, sin guiones ni espacios.">
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="pais" class="form-label">País</label>
+                            <input type="text" class="form-control" id="pais" name="pais" value="Argentina"
+                                required>
+                        </div>
 
-                        <hr class="my-4">
+                        <div class="col-12">
+                            <label for="calle" class="form-label">Calle</label>
+                            <input type="text" class="form-control" id="calle" name="calle" required>
+                        </div>
 
-                    </form>
-                </div>
+                        <div class="col-12">
+                            <label for="direccion-extra" class="form-label">Altura, piso y departamento</label>
+                            <input type="text" class="form-control" id="direccion-extra" name="altura_piso_depto"
+                                required>
+                        </div>
 
-                <div class="col-lg-5">
-                    <div class="order-summary-card">
-                        <h3 class="d-flex justify-content-between align-items-center mb-4">
-                            <span>Tu Pedido</span>
-                            <span class="badge bg-primary rounded-pill" id="cart-item-count">0</span>
-                        </h3>
+                        <div class="col-sm-6">
+                            <label for="provincia" class="form-label">Provincia</label>
+                            <input type="text" class="form-control" id="provincia" name="provincia" required>
+                        </div>
 
-                        <ul class="list-group mb-3" id="order-summary-list">
-                            <li class="list-group-item d-flex justify-content-between lh-sm">
-                                <div>
-                                    <h6 class="my-0">Cargando carrito...</h6>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="col-sm-6">
+                            <label for="codigo-postal" class="form-label">Código Postal</label>
+                            <input type="tel" class="form-control" id="codigo-postal" name="codigo_postal"
+                                pattern="[0-9]+" title="Ingresa solo números." required>
+                        </div>
 
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <strong id="order-subtotal">$0</strong>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Envío</span>
-                                <strong>A coordinar</strong>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                <span class="fw-bold">Total</span>
-                                <strong class="text-primary-color fs-5" id="order-total">$0</strong>
-                            </li>
-                        </ul>
+                        <div class="col-12">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono"
+                                placeholder="+54 9 11 1234-5678" 
+                                pattern="[0-9]+" 
+                                title="Ingresa solo números (código de área + número)." 
+                                required>
+                        </div>
 
-                        <button class="w-100 btn btn-primary-custom btn-lg" type="submit" form="checkout-form">
-                            Generar Orden de Compra
-                        </button>
-
-                        <p class="text-muted small">
-                            Un asesor se comunicará contigo para confirmar el pedido, el método de pago y el envío.
-                        </p>
+                        <div class="col-12">
+                            <label for="notas" class="form-label">Notas del pedido <span
+                                    class="text-muted">(Opcional)</span></label>
+                            <textarea class="form-control" id="notas" name="notas" rows="4"></textarea>
+                        </div>
                     </div>
-                </div>
 
+                    <input type="hidden" name="pedido_detalles" id="hidden-pedido-detalles">
+                    <input type="hidden" name="pedido_total" id="hidden-pedido-total">
+                    
+                    <hr class="my-4">
+
+                </form>
             </div>
+
+            <div class="col-lg-5">
+                <div class="order-summary-card">
+                    <h3 class="d-flex justify-content-between align-items-center mb-4">
+                        <span>Tu Pedido</span>
+                        <span class="badge bg-primary rounded-pill" id="cart-item-count">0</span>
+                    </h3>
+
+                    <ul class="list-group mb-3" id="order-summary-list">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Cargando carrito...</h6>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <strong id="order-subtotal">$0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Envío</span>
+                            <strong>A coordinar</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <span class="fw-bold">Total</span>
+                            <strong class="text-primary-color fs-5" id="order-total">$0</strong>
+                        </li>
+                    </ul>
+
+                    <button class="w-100 btn btn-primary-custom btn-lg" type="submit" form="checkout-form">
+                        Generar Orden de Compra
+                    </button>
+
+                    <p class="text-muted small">
+                        Un asesor se comunicará contigo para confirmar el pedido, el método de pago y el envío.
+                    </p>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

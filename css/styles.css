@@ -1,6 +1,8 @@
 /* ============================================== */
 /* 0. PALETA DE COLORES Y VARIABLES */
 /* ============================================== */
+
+
 :root {
     --color-primary: #6096ba;
     /* Azul Ciel - Títulos / Principal */
@@ -35,10 +37,13 @@ body {
     /* Espacio para el Navbar fijo */
     overflow-x: hidden;
     /* Evita el scroll horizontal */
+    width: 100%;
+
 }
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 h1,
@@ -52,6 +57,7 @@ h6 {
     color: var(--color-dark);
     font-weight: 700;
 }
+
 
 /* ... el resto del CSS ... */
 
@@ -593,23 +599,23 @@ section {
 /* SOLUCIÓN: Anular el min-height: 100vh
        Y reducir los paddings SÓLO en pantallas grandes.
     */
-    @media (min-width: 1201px) {
-        
-        #casodeexito {
-            /* 1. AQUÍ ESTÁ LA SOLUCIÓN: 
+@media (min-width: 1201px) {
+
+    #casodeexito {
+        /* 1. AQUÍ ESTÁ LA SOLUCIÓN: 
                Anula el min-height: 100vh para que la sección 
                mida solo lo que mide su contenido. */
-            min-height: auto; 
-            
-            /* 2. Mantenemos el padding-bottom reducido */
-            padding-bottom: 2rem; 
-        }
+        min-height: auto;
 
-        /* 3. Mantenemos el padding-top reducido */
-        #comprar {
-            padding-top: 2rem;
-        }
+        /* 2. Mantenemos el padding-bottom reducido */
+        padding-bottom: 2rem;
     }
+
+    /* 3. Mantenemos el padding-top reducido */
+    #comprar {
+        padding-top: 2rem;
+    }
+}
 
 
 /* ============================================== */
@@ -722,20 +728,24 @@ section {
 }
 
 #comprar h2 {
-    color: var(--color-light); /* Título de sección en blanco */
+    color: var(--color-light);
+    /* Título de sección en blanco */
 }
 
 .pricing-card {
-    background-color: var(--color-light); /* Fondo de la tarjeta en blanco */
+    background-color: var(--color-light);
+    /* Fondo de la tarjeta en blanco */
     border: 3px solid transparent;
     transition: all 0.3s ease;
 }
 
 .pricing-card:hover {
-    border: 3px solid var(--color-primary); /* Borde primario al pasar el mouse */
+    border: 3px solid var(--color-primary);
+    /* Borde primario al pasar el mouse */
 }
 
-.pricing-card h3, .pricing-card h5 {
+.pricing-card h3,
+.pricing-card h5 {
     color: var(--color-dark) !important;
 }
 
@@ -753,4 +763,132 @@ section {
     color: var(--color-light) !important;
     border-color: var(--color-primary);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Aplica 'overflow-x: hidden' solo a las secciones 
+que usan animaciones de fade-left/right.
+*/
+#ventajas,
+#comprar,
+#contacto {
+    overflow-x: hidden;
+}
+
+/* ============================================== */
+/* 12. FIX: ALTURA DEL HERO EN MOBILE */
+/* ============================================== */
+
+/* Esta regla se aplica solo a pantallas MÁS PEQUEÑAS 
+que 992px (el punto donde Bootstrap apila tus columnas).
+*/
+@media (max-width: 991.98px) {
+
+    /* 1. Anula el 'height: 100vh' de tu CSS.
+    'height: auto' permite que la sección crezca
+    verticalmente tanto como necesite para mostrar 
+    todo el contenido (texto + imagen apilados).
+    */
+    #hero {
+        height: auto;
+    }
+
+    /* 2. Anula el 'min-height: 80vh' que tienes 
+    en tu HTML (style="...").
+    Usamos !important para tener prioridad
+    sobre el estilo "inline" del HTML.
+    */
+    #hero .container {
+        min-height: auto !important;
+    }
+}
+
+/* ============================================== */
+/* 13. ESTILO BOTÓN "REALIZAR ORDEN" DESHABILITADO */
+/* ============================================== */
+
+/* Sobreescribimos el estilo de Bootstrap para .disabled
+  en nuestro botón personalizado.
+*/
+.btn-primary-custom.disabled,
+.btn-primary-custom:disabled {
+    
+    /* 1. Lo hacemos 100% visible (opaco) pero con colores "apagados" */
+    opacity: 1 !important; 
+    background-color: #E0E0E0;  /* Gris claro (tu color --color-accent) */
+    border-color: #E0E0E0;
+    color: #888888;            /* Texto gris oscuro */
+
+    /* 2. Nos aseguramos de que no se pueda clickear */
+    pointer-events: none;       
+    
+    /* 3. (Opcional) Mostramos un cursor de "no permitido" al pasar el mouse */
+    cursor: not-allowed;
+}
+
+/* ============================================== */
+/* 14. ESTILOS DEL FOOTER COMPLETO */
+/* ============================================== */
+
+/* Estilos para los enlaces de navegación del footer */
+.footer-nav-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: #e0e0e0; /* Un blanco un poco más suave */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-primary); /* Resalta con el color primario */
+    text-decoration: underline;
+}
+
+/* Estilos para la lista de contacto (para alinear íconos) */
+.contact-info-footer i {
+    color: var(--color-primary); /* Íconos en color primario */
+    width: 20px; /* Ancho fijo para alinear el texto */
+    text-align: center;
+}
+
+/* Estilos para los íconos de redes sociales */
+.social-icons .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    color: var(--color-light);
+    font-size: 1.1rem;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    background-color: var(--color-primary); /* Fondo primario al pasar el mouse */
+    color: var(--color-light);
+    transform: translateY(-3px); /* Efecto "lift" */
+}
+
+/* ============================================== */
+/* 15. ESTILOS CONTACTO Y FOOTER CTA */
+/* ============================================== */
+
+/* Subtítulo en la sección Contacto (blanco suave) */
+.contact-subheading {
+    color: #f0f0f0; 
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Texto de propuesta en el Footer */
+.footer-proposal-text {
+    color: #e0e0e0; 
+    font-size: 0.9rem; 
+    line-height: 1.4;
 }

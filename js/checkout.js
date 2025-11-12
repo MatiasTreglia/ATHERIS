@@ -51,12 +51,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 2. Función para manejar campos condicionales (Factura A)
-    function setupConditionalFields() {
-        if (!facturaCheck || !facturaFields) return;
-        facturaCheck.addEventListener('change', function() {
-            facturaFields.style.display = this.checked ? 'flex' : 'none';
-        });
-    }
+function setupConditionalFields() {
+    if (!facturaCheck || !facturaFields) return;
+
+    // --- INICIO DE LA MODIFICACIÓN ---
+
+    // 1. Selectores para los campos de Factura A
+    // (Asumo que tu campo de Razón Social tiene el id="razon_social")
+    // (Tu Google Sheet lo llama 'condicion_iva' y 'cuit')
+    const cuitInput = document.querySelector('[name="cuit"]');
+    const razonSocialInput = document.querySelector('[name="razonSocial"]'); // <-- CAMBIA ESTO si tu 'name' es otro
+    const condicionIvaInput = document.querySelector('[name="condicion_iva"]');
+
+    facturaCheck.addEventListener('change', function() {
+        const isChecked = this.checked;
+
+        // 2. Muestra/oculta el contenedor
+        facturaFields.style.display = isChecked ? 'flex' : 'none';
+
+        // 3. Añade/quita 'required' dinámicamente
+        // Esto es crucial para que el formulario se pueda enviar
+        // si la factura A NO está marcada.
+        if (cuitInput) cuitInput.required = isChecked;
+        if (razonSocialInput) razonSocialInput.required = isChecked;
+        if (condicionIvaInput) condicionIvaInput.required = isChecked;
+    });
+
+    // --- FIN DE LA MODIFICACIÓN ---
+}
 
     // === INICIALIZACIÓN (SIN CAMBIOS) ===
     loadOrderSummary();

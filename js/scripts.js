@@ -4,12 +4,120 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 document.addEventListener('DOMContentLoaded', function () {
 
     // ==============================================
-    // EFECTO 1, 2, 3, 4 (Mantenidos)
+    // EFECTO 1: HEADER (Desvanecimiento) - Mantenido
+    // ==============================================
+    gsap.to("#inicio .container", {
+        scrollTrigger: {
+            trigger: "#inicio",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.5,
+            // markers: true, // Descomenta para depurar
+        },
+        opacity: 0,
+        y: -100,
+        scale: 0.9,
+        ease: "power1.in",
+    });
+
+    // ==============================================
+    // EFECTO 2: VENTAJAS (Entrada Secuencial Lenta y Escalonada)
+    // ==============================================
+    const advantageRows = gsap.utils.toArray("[data-scroll-item]");
+
+    advantageRows.forEach((row, i) => {
+
+        // 1. Determinamos la dirección de entrada
+        const isOdd = i % 2 !== 0; // Fila Impar (1, 3, 5...)
+        const enterFromX = isOdd ? 100 : -100; // La dirección del texto/tarjeta
+
+        // 2. Selectores de los elementos internos
+        const title = row.querySelector(".advantage-title");
+        const text = row.querySelector(".advantage-text");
+        const image = row.querySelector(".advantage-image");
+
+        // 3. Creamos la Timeline para la secuencia de entrada
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: row,
+                start: "top 60%",
+                toggleActions: "restart none none reverse",
+                // markers: true, 
+            }
+        });
+
+        // --- SECUENCIA DE ANIMACIÓN USANDO .from() ---
+
+        // Paso 1: Título
+        tl.from(title, {
+            opacity: 0,
+            x: enterFromX,
+            duration: 1.0, 
+            ease: "power2.out",
+        }, 0); // Comienza en el tiempo 0
+
+        // Paso 2: Imagen
+        tl.from(image, {
+            opacity: 0,
+            x: enterFromX * -1,
+            duration: 1.0, 
+            ease: "power3.out"
+        }, 0.2); // Comienza 0.2s después del título
+
+        // Paso 3: Texto
+        tl.from(text, {
+            opacity: 0,
+            x: enterFromX,
+            duration: 1.0, 
+            ease: "power2.out",
+        }, 0.5); // Comienza 0.5s (0.3s después de la imagen)
+    });
+
+    // ==============================================
+    // EFECTO 3: PRODUCTO (Pinning y Scroll) - Mantenido
     // ==============================================
 
-    // ... (Todo tu código de GSAP para Header, Ventajas, Producto y Flip Cards queda igual) ...
-    // ...
-    // ...
+    // 1. Inicialización de texto
+    gsap.set("#producto h2", { text: { value: "<span class='text-primary-color'>Calce</span> Ergonómico Perfecto", ease: "none" } });
+    gsap.set("#producto p", { text: { value: "Nuestras máscaras, diseñadas por veterinarios y fabricadas con precisión 3D, garantizan un sellado hermético fundamental para la oxigenación efectiva en pacientes de todas las especies.", ease: "none" } });
+
+    // 2. PINNING
+    ScrollTrigger.create({
+        trigger: "#producto-pin",
+        pin: "#pin-container",
+        start: "top top",
+        end: "bottom bottom",
+    });
+
+    // 3. Transiciones de Contenido
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: "#producto-pin",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+        }
+    })
+    .to("#mascarilla-img", { scale: 1.1, rotation: 5, duration: 1 })
+    .to("#producto h2", { text: { value: "<span class='text-primary-color'>Material TPU:</span> La Flexibilidad para el Calce", speed: 0.05 }, duration: 1, ease: "none" }, 1)
+    .to("#producto p", { text: { value: "El TPU (Poliuretano Termoplástico) garantiza la suavidad necesaria para no lastimar la piel del animal.", speed: 0.05 }, duration: 1, ease: "none" }, 1)
+    .to("#producto h2", { text: { value: "<span class='text-primary-color'>5 Talles Únicos:</span> De XS a XL", speed: 0.05 }, duration: 1, ease: "none" }, 2)
+    .to("#producto p", { text: { value: "Nuestra tecnología nos permite ofrecer 5 tamaños, asegurando la talla perfecta para cada raza.", speed: 0.05 }, duration: 1, ease: "none" }, 2)
+    .to("#mascarilla-img", { scale: 1, rotation: 0, duration: 1 }, 3);
+
+    // ==============================================
+    // NUEVO EFECTO 4: HABILITAR FLIP EN MOBILE (CASOS DE ÉXITO) 
+    // ==============================================
+
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+    testimonialCards.forEach(card => {
+        // Añadir el listener para el toque/click
+        card.addEventListener('click', function (e) {
+            // e.preventDefault(); // No es necesario si no es un enlace
+            this.classList.toggle('flipped');
+        }); 
+    }); 
 
     // ==============================================
     // EFECTO 5: LÓGICA DEL CARRITO (Modificado para Orden de Compra)
@@ -18,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- 1. Selectores del DOM ---
     const talleInputs = document.querySelectorAll('.talle-quantity-input');
     const cartTotalElement = document.getElementById('cart-total');
-    // Nuevo selector para el botón de checkout
     const realizarOrdenBtn = document.getElementById('realizar-orden-btn');
 
     // --- 2. Variable para el temporizador del debounce ---
@@ -74,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Si el total es 0, no hacemos nada (el botón debería estar disabled igual)
         if (cartData.totalPrice === 0) {
-            return; 
+            return;
         }
 
         // Guardamos los datos en localStorage
