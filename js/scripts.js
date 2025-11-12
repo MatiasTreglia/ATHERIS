@@ -207,4 +207,60 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- 6. Inicializar el total al cargar la página ---
     updateCartTotal();
 
+    // ==============================================
+    // EFECTO 6: MANEJO DEL FORMULARIO DE CONTACTO (CON SWEETALERT)
+    // ==============================================
+    
+    // 1. Pega la URL de tu *NUEVO* script (el que acabas de crear)
+    const contactFormScriptURL = 'https://script.google.com/macros/s/AKfycbwMN0EUG6kY_SbWOAOisCLUB8TwN4w-jRB65E9rZBnuhHMUGFMT6FP7vZLze7q_Z1R6/exec'; // <-- ¡ASEGÚRATE DE QUE ESTO ESTÉ CORRECTO!
+
+    const contactForm = document.getElementById('contact-form');
+    const contactSubmitBtn = document.getElementById('contact-submit-btn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault(); 
+
+            if (contactSubmitBtn) {
+                contactSubmitBtn.disabled = true;
+                contactSubmitBtn.textContent = 'Enviando...';
+            }
+
+            fetch(contactFormScriptURL, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                mode: 'no-cors' 
+            })
+            .then(() => {
+                // --- ¡CAMBIO AQUÍ! ---
+                // Reemplazamos el alert() por Swal.fire()
+                Swal.fire({
+                    title: "¡Mensaje Enviado!",
+                    text: "Gracias por contactarnos. Te responderemos a la brevedad.",
+                    icon: "success",
+                    confirmButtonColor: '#6096ba' // (Tu --color-primary)
+                });
+                contactForm.reset(); // Limpia el formulario
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                
+                // --- ¡CAMBIO AQUÍ! ---
+                // También mejoramos el mensaje de error
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un problema al enviar tu mensaje. Por favor, intenta de nuevo.",
+                    icon: "error",
+                    confirmButtonColor: '#6096ba'
+                });
+            })
+            .finally(() => {
+                if (contactSubmitBtn) {
+                    contactSubmitBtn.disabled = false;
+                    contactSubmitBtn.textContent = 'Enviar Mensaje';
+                }
+            });
+        });
+    }
+
 });

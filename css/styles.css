@@ -645,11 +645,10 @@ section {
 /* Estilo para los inputs y textareas */
 #contacto .form-control {
     background-color: #FFFFFF;
-    /* Fondo oscuro para los inputs */
-    border: 1px solid var(--color-light);
-    /* Borde blanco para mayor contraste */
-    color: var(--color-light);
-    /* Texto blanco */
+    border: 1px solid #ccc;
+    /* Un borde gris sutil */
+    color: var(--color-dark);
+    /* <-- CAMBIO AQUÍ (texto negro) */
     padding: 10px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -658,12 +657,12 @@ section {
 /* Estilo del input al enfocar (focus) */
 #contacto .form-control:focus {
     background-color: #FFFFFF;
-    /* Fondo un poco más claro al enfocar */
-    border-color: var(--color-light);
-    /* Borde de focus en blanco */
-    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5);
-    /* Sombra de enfoque blanca sutil */
-    color: var(--color-light);
+    border-color: var(--color-primary);
+    /* Borde azul al enfocar */
+    box-shadow: 0 0 0 0.25rem rgba(96, 150, 186, 0.25);
+    /* Sombra azul sutil */
+    color: var(--color-dark);
+    /* <-- CAMBIO AQUÍ (texto negro) */
 }
 
 /* ---------------------------------------------------- */
@@ -811,16 +810,18 @@ que 992px (el punto donde Bootstrap apila tus columnas).
 */
 .btn-primary-custom.disabled,
 .btn-primary-custom:disabled {
-    
+
     /* 1. Lo hacemos 100% visible (opaco) pero con colores "apagados" */
-    opacity: 1 !important; 
-    background-color: #E0E0E0;  /* Gris claro (tu color --color-accent) */
+    opacity: 1 !important;
+    background-color: #E0E0E0;
+    /* Gris claro (tu color --color-accent) */
     border-color: #E0E0E0;
-    color: #888888;            /* Texto gris oscuro */
+    color: #888888;
+    /* Texto gris oscuro */
 
     /* 2. Nos aseguramos de que no se pueda clickear */
-    pointer-events: none;       
-    
+    pointer-events: none;
+
     /* 3. (Opcional) Mostramos un cursor de "no permitido" al pasar el mouse */
     cursor: not-allowed;
 }
@@ -835,20 +836,24 @@ que 992px (el punto donde Bootstrap apila tus columnas).
 }
 
 .footer-link {
-    color: #e0e0e0; /* Un blanco un poco más suave */
+    color: #e0e0e0;
+    /* Un blanco un poco más suave */
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .footer-link:hover {
-    color: var(--color-primary); /* Resalta con el color primario */
+    color: var(--color-primary);
+    /* Resalta con el color primario */
     text-decoration: underline;
 }
 
 /* Estilos para la lista de contacto (para alinear íconos) */
 .contact-info-footer i {
-    color: var(--color-primary); /* Íconos en color primario */
-    width: 20px; /* Ancho fijo para alinear el texto */
+    color: var(--color-primary);
+    /* Íconos en color primario */
+    width: 20px;
+    /* Ancho fijo para alinear el texto */
     text-align: center;
 }
 
@@ -860,7 +865,8 @@ que 992px (el punto donde Bootstrap apila tus columnas).
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fondo semi-transparente */
     color: var(--color-light);
     font-size: 1.1rem;
     margin-right: 10px;
@@ -869,9 +875,11 @@ que 992px (el punto donde Bootstrap apila tus columnas).
 }
 
 .social-icons .social-icon:hover {
-    background-color: var(--color-primary); /* Fondo primario al pasar el mouse */
+    background-color: var(--color-primary);
+    /* Fondo primario al pasar el mouse */
     color: var(--color-light);
-    transform: translateY(-3px); /* Efecto "lift" */
+    transform: translateY(-3px);
+    /* Efecto "lift" */
 }
 
 /* ============================================== */
@@ -880,15 +888,15 @@ que 992px (el punto donde Bootstrap apila tus columnas).
 
 /* Subtítulo en la sección Contacto (blanco suave) */
 .contact-subheading {
-    color: #f0f0f0; 
-    max-width: 800px; 
+    color: #f0f0f0;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Texto de propuesta en el Footer */
 .footer-proposal-text {
-    color: #e0e0e0; 
-    font-size: 0.9rem; 
+    color: #e0e0e0;
+    font-size: 0.9rem;
     line-height: 1.4;
 }
