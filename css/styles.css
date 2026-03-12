@@ -215,18 +215,22 @@ section {
 #hero h1 {
     color: var(--color-light);
     /* Título en el header será blanco para contrastar */
+
+    /* ==== CAMBIO AQUÍ ==== */
+    /* Anula el 'display-3' y le da un tamaño fijo. 
+       Prueba con 3rem o 2.5rem si lo quieres más chico. */
+    font-size: 3rem;
 }
 
 #hero p.lead {
-    /* 💡 CAMBIO DE COLOR Y GROSOR (Mantenido) */
     font-weight: 500;
-    /* 💡 NUEVO: Limita el ancho del texto (hace el bloque más 'cuadrado') */
-
-    /* Usamos px en lugar de % porque está en el centro del viewport */
-    /* 💡 NUEVO: Centra el bloque de texto limitado */
     margin-left: auto;
     margin-right: auto;
-    /* Nota: Asegúrate de que el contenedor del texto en el HTML esté centrado */
+
+    /* ==== CAMBIO AQUÍ ==== */
+    /* Reduce el tamaño del párrafo 'lead'. 
+       (El valor por defecto de Bootstrap es 1.25rem) */
+    font-size: 1.1rem;
 }
 
 .hero-image {
