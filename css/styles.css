@@ -24,22 +24,22 @@
 /* 1. ESTILOS GLOBALES Y TIPOGRAFÍA */
 /* ============================================== */
 body {
-    /* Establece el color de fondo de toda la página a blanco */
-    background-color: var(--color-light);
-    /* Que es #FFFFFF */
-    color: var(--color-dark);
-    /* Color de texto por defecto (Negro) */
+    margin: 0;
 
-    /* 💡 CAMBIO DE FUENTE BASE: Open Sans (para párrafos) */
+    color: var(--color-dark);
     font-family: 'Open Sans', sans-serif;
 
-    padding-top: 72px;
-    /* Espacio para el Navbar fijo */
+    padding: 72px;
     overflow-x: hidden;
-    /* Evita el scroll horizontal */
     width: 100%;
 
+    background-image: url("../img/kurp2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 
 html {
     scroll-behavior: smooth;
@@ -80,11 +80,21 @@ h6 {
 
 /* Usamos el ID para asegurar que el fondo sea el color primario */
 #main-navbar {
-    background-color: var(--color-primary) !important;
-    /* Fondo: Azul Primario */
-    border-bottom: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+    background-color: #FFFFFF;
+    
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    right: 20px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+    padding: 1px 1px;
+
+    z-index: 1000;
+
 }
 
 /* 1. EL TEXTO DE LA MARCA */
@@ -95,15 +105,20 @@ h6 {
 
 /* 2. ENLACES: Texto en blanco */
 .navbar-nav .nav-link {
-    color: var(--color-light) !important;
+    color: #000000;
     /* Enlaces en Blanco */
-    font-weight: 600;
+    font-weight: 500;
+
 }
 
 /* 3. HOVER: e0e0e0 (color accent) */
 .navbar-nav .nav-link:hover {
-    color: var(--color-accent) !important;
+    color: #1bc4c4;
+    font-weight: 800;
     /* Hover en Gris Claro (#E0E0E0) */
+}
+.navbar-nav .nav-item{
+    margin: 0 12px;
 }
 
 /* ============================================== */
@@ -187,7 +202,7 @@ h6 {
 section {
     position: relative;
     min-height: 100vh;
-    background-color: var(--color-light);
+    background-color: transparent;
     /* Fondo Blanco por defecto */
 }
 
@@ -903,4 +918,12 @@ que 992px (el punto donde Bootstrap apila tus columnas).
     color: #e0e0e0;
     font-size: 0.9rem;
     line-height: 1.4;
+}
+
+#hero {
+    background: transparent !important;
+}
+
+section {
+    background-color: transparent !important;
 }
