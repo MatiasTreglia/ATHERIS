@@ -1,171 +1,222 @@
 /* ============================================== */
 /* 0. PALETA DE COLORES Y VARIABLES */
 /* ============================================== */
-
+/* *{ outline:1px solid red; } */
 
 :root {
     --color-primary: #6096ba;
-    /* Azul Ciel - Títulos / Principal */
     --color-secondary: #A9D6E5;
-    /* Azul Claro - Subtítulos / Botones */
     --color-dark: #000000;
-    /* Texto General y Títulos */
     --color-light: #FFFFFF;
-    /* Background principal */
     --color-accent: #E0E0E0;
-    /* Decoraciones/Bordes */
     --color-text-secondary: #555555;
-    /* Gris suave para textos largos */
     --bg-light-section: var(--color-light);
-    /* Blanco */
 }
 
 /* ============================================== */
 /* 1. ESTILOS GLOBALES Y TIPOGRAFÍA */
 /* ============================================== */
-body{
-    margin:0;
-    padding:72px;
-    overflow-x:hidden;
-    width:100%;
-
-    color:var(--color-dark);
-    font-family:'Open Sans', sans-serif;
-
-    background:transparent;
+body {
+    margin: 0;
+    padding-top: 50px;
+    overflow-x: hidden;
+    width: 100%;
+    color: var(--color-dark);
+    font-family: 'Open Sans', sans-serif;
+    background: transparent;
 }
 
 
-html{
-    scroll-behavior:smooth;
-    width:100%;
-
-    background-image:url("../img/kurp2.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+    background-image: url("../img/kurp2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-@media (max-width:768px){
-
-html{
-    background-size:cover;
-    background-position:center top;
-    background-attachment:scroll;
+@media (max-width: 768px) {
+    html {
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+    }
 }
 
-}
-
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    /* 💡 Mantenemos los títulos en Montserrat (coherencia con el diseño anterior) */
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     color: var(--color-dark);
     font-weight: 700;
 }
 
+.text-primary-color { color: var(--color-primary) !important; }
 
-/* ... el resto del CSS ... */
-
-/* Estilo para destacar palabras con el color primario */
-.text-primary-color {
-    color: var(--color-primary) !important;
-}
-
-/* Sombra de texto para hacer que los títulos claros destaquen */
 .text-shadow-custom {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    /* Sombra oscura sutil */
     color: #6096ba;
-    /* Color directo del texto, aunque se sobrescribe en HTML */
 }
-
 /* ============================================== */
-/* 2. NAVBAR FIJO */
+/* 2. NAVBAR FIJO (SOLUCIÓN ANCHO Y DESBORDE) */
 /* ============================================== */
 
-/* Usamos el ID para asegurar que el fondo sea el color primario */
 #main-navbar {
-    background-color: #FFFFFF;
-    
+    background-color: #FFFFFF !important;
     position: fixed;
     top: 15px;
-    left: 20px;
-    right: 20px;
-
-    border-radius: 14px;
-
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-
-    padding: 1px 1px;
-
+    
+    /* Centrado sin transform (evita errores de ancho en móvil) */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Ancho controlado */
+    width: 90%; 
+    max-width: 1100px;
+    
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 8px 20px !important; 
     z-index: 1000;
-
+    transition: all 0.3s ease;
+    
+    /* Evita que cualquier contenido interno estire la barra */
+    overflow: hidden; 
 }
 
-/* 1. EL TEXTO DE LA MARCA */
-.navbar-brand {
-    font-size: 1.5rem;
-    /* Valor corregido */
+/* Forzamos al contenedor interno a no tener márgenes negativos */
+#main-navbar .container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-/* 2. ENLACES: Texto en blanco */
-.navbar-nav .nav-link {
-    color: #000000;
-    /* Enlaces en Blanco */
-    font-weight: 500;
+/* Ajuste móvil para evitar desbordes */
+@media (max-width: 991px) {
+    #main-navbar {
+        width: 88%; /* Un poco más angosto para dar aire a los costados */
+        top: 10px;
+        border-radius: 20px;
+        overflow: visible; /* Permitir que el menú desplegable se vea */
+    }
 
+    /* Si el menú abierto causa el scroll, limitamos su ancho */
+    .navbar-collapse {
+        width: 100%;
+        background: white;
+        margin-top: 10px;
+        border-radius: 15px;
+    }
 }
 
-/* 3. HOVER: e0e0e0 (color accent) */
-.navbar-nav .nav-link:hover {
-    color: #1bc4c4;
-    font-weight: 800;
-    /* Hover en Gris Claro (#E0E0E0) */
-}
-.navbar-nav .nav-item{
-    margin: 0 12px;
+/* Fix global para evitar cualquier scroll horizontal en el sitio */
+html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
 
 /* ============================================== */
-/* 3. SOLUCIÓN CENTRADO DE NAVBAR (PANTALLA GRANDE) */
+/* SOBRESCRIBIR ICONO DE BOOTSTRAP (MODO DARK) */
 /* ============================================== */
 
-/* Solo se aplica en pantallas de escritorio o mayores (lg) */
+.navbar-dark, [data-bs-theme=dark] {
+    /* Cambiamos el color del icono a NEGRO (stroke='%23000') */
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    
+    /* También quitamos el borde del botón si te molesta */
+    --bs-navbar-toggler-border-color: transparent !important;
+}
+
+/* OPCIONAL: Si lo preferís en el AZUL de tu marca (#6096ba) */
+/*
+.navbar-dark, [data-bs-theme=dark] {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%236096ba' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+*/
+
+
+/* ============================================== */
+/* 3. SOLUCIÓN CENTRADO Y RESPONSIVE */
+/* ============================================== */
+
 @media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        justify-content: center; /* Centra los links en el medio */
+    }
 
-    /* Usamos flexbox en el contenedor principal para centrar el ul */
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Ajuste para móvil: que no flote tanto y sea más sólido */
+@media (max-width: 991px) {
+    #main-navbar {
+        width: 95%;
+        top: 10px;
+        padding: 8px 20px;
+        border-radius: 20px; /* Menos redondeado en móvil queda mejor */
+    }
+    
+    /* El menú desplegable en móvil */
+    .navbar-collapse {
+        background: white;
+        margin-top: 10px;
+        border-radius: 15px;
+        padding: 10px;
+    }
+}
+
+/* 
+/* ============================================== */
+/* 3. SOLUCIÓN CENTRADO (PANTALLA GRANDE) */
+/* ============================================== */
+
+@media (min-width: 992px) {
+    /* Quitamos el position absolute del botón de contacto 
+       para que todo fluya en una sola línea compacta */
     #navbarNav {
         display: flex;
+        align-items: center;
         justify-content: center;
-        width: 100%;
     }
 
-    /* Le damos a los links un margen auto para que se centren dentro del espacio */
     #navbarNav .navbar-nav {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
-    /* Movemos el botón de contacto de vuelta a la derecha */
     #navbarNav .ms-auto {
-        margin-left: 0 !important;
-        position: absolute;
-        right: 15px;
+        margin-left: 10px !important;
+        position: static !important; /* Ahora es parte del flujo central */
+    }
+    
+    /* Efecto al hacer scroll (opcional): si querés que se achique un poco */
+    #main-navbar {
+        padding: 4px 20px;
+    }
+}
+
+/* Ajuste para móvil: que vuelva a ocupar casi todo el ancho */
+@media (max-width: 991px) {
+    #main-navbar {
+        width: calc(100% - 40px);
+        border-radius: 14px;
+        padding: 5px 15px;
     }
 }
 
 /* ============================================== */
 /* 4. ESTILOS DE BOTONES PERSONALIZADOS */
 /* ============================================== */
-
-/* Botón Primario (Comprar) */
 .btn-primary-custom {
     background-color: var(--color-primary);
     color: var(--color-light);
@@ -179,12 +230,9 @@ h6 {
     color: var(--color-light);
 }
 
-/* Botón Secundario (Contacto - Blanco) */
 .btn-secondary-custom {
     background-color: var(--color-light);
-    /* Fondo del Botón en Blanco */
     color: var(--color-primary);
-    /* Texto del Botón en Azul Primario */
     border: 2px solid var(--color-light);
     transition: all 0.3s ease;
 }
@@ -195,7 +243,6 @@ h6 {
     border-color: var(--color-accent);
 }
 
-/* Ajuste para el texto secundario que se añade como borde */
 .btn-secondary-custom-border {
     background-color: transparent;
     color: var(--color-primary);
@@ -215,276 +262,230 @@ section {
     position: relative;
     min-height: 100vh;
     background-color: transparent;
-    /* Fondo Blanco por defecto */
 }
 
-.bg-light-section {
-    background-color: var(--bg-light-section);
-}
+.bg-light-section { background-color: var(--bg-light-section); }
+.bg-dark-section { background-color: var(--color-dark); }
 
-.bg-dark-section {
-    background-color: var(--color-dark);
-}
-
-
-
-/* 6. ESTILOS ESPECÍFICOS POR SECCIÓN */
-/* ============================================== */
-/* A. SECCIÓN INICIO/HEADER *
-
-/* ... el resto de la sección header ... */
 #hero {
     background-size: cover;
     background-position: center;
     height: 100vh;
+    margin-top: 40px;
 }
 
-#hero h1 {
-    color: var(--color-light);
-    /* Título en el header será blanco para contrastar */
-
-    /* ==== CAMBIO AQUÍ ==== */
-    /* Anula el 'display-3' y le da un tamaño fijo. 
-       Prueba con 3rem o 2.5rem si lo quieres más chico. */
-    font-size: 3rem;
-}
-
-#hero p.lead {
-    font-weight: 500;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* ==== CAMBIO AQUÍ ==== */
-    /* Reduce el tamaño del párrafo 'lead'. 
-       (El valor por defecto de Bootstrap es 1.25rem) */
-    font-size: 1.1rem;
-}
+#hero h1 { color: var(--color-light); font-size: 3rem; }
+#hero p.lead { font-weight: 500; margin-left: auto; margin-right: auto; font-size: 1.1rem; }
 
 .hero-image {
     max-width: 100%;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
-    /* Degradado de transparencia en el borde inferior */
     mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
-/* B. SECCIÓN VENTAJAS */
-#ventajas {
-    background-color: #FFFFFF;
-    min-height: 100vh;
-}
-
-#ventajas .lead {
-    color: var(--color-dark);
-}
-
 /* =========================
-   Carousel inicio
+   6. CAROUSEL INICIO (ACTUALIZADO)
 ========================= */
 
-.hero-carousel{
+.hero-carousel {
     width: 100%;
-    aspect-ratio: 1 / 1;
     margin: auto;
     position: relative;
-
+    padding-bottom: 50px; /* Un poco más de espacio para los indicadores */
 }
 
 /* Aplicamos el difuminado solo a las imágenes */
-.hero-carousel .carousel-inner{
+.hero-carousel .carousel-inner {
     overflow: hidden;
-
     mask-image: linear-gradient(
         to right,
         transparent 0%,
-        black 8%,
-        black 80%,
+        black 10%,
+        black 90%,
         transparent 100%
     );
-
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
-        black 8%,
-        black 80%,
+        black 10%,
+        black 90%,
         transparent 100%
     );
 }
 
-/* Imágenes */
-.hero-carousel img{
+/* Ajuste de tamaño de las imágenes */
+.hero-carousel img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    
+    height: auto;
+    max-height: 600px; /* Aumentado para que no se vean chicas */
+    object-fit: contain; /* Mantiene la proporción sin recortar */
+    transition: transform 0.5s ease;
 }
 
-/* =========================
-   Flechas
-========================= */
+@media (max-width: 991px) {
+    .hero-carousel img {
+        max-height: 400px;
+    }
+}
 
+@media (max-width: 768px) {
+    .hero-carousel img {
+        max-height: 300px;
+    }
+}
+
+/* Flechas - Ajustadas para que no tapen la imagen si es muy ancha */
 .hero-carousel .carousel-control-prev,
-.hero-carousel .carousel-control-next{
-    width: 45px;
-    height: 45px;
-    background-color: white;
+.hero-carousel .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8); /* Un toque de transparencia */
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
     opacity: 1;
+    background-color: white;
 }
 
-/* Mover flechas fuera */
-.hero-carousel .carousel-control-prev{
-    left: -60px;
+/* Mover flechas un poco más cerca si el diseño lo requiere */
+.hero-carousel .carousel-control-prev { left: -30px; }
+.hero-carousel .carousel-control-next { right: -30px; }
+
+/* En pantallas muy anchas, sacamos las flechas más afuera */
+@media (min-width: 1400px) {
+    .hero-carousel .carousel-control-prev { left: -80px; }
+    .hero-carousel .carousel-control-next { right: -80px; }
 }
 
-.hero-carousel .carousel-control-next{
-    right: -60px;
-}
-
-/* Iconos */
 .hero-carousel .carousel-control-prev-icon,
-.hero-carousel .carousel-control-next-icon{
+.hero-carousel .carousel-control-next-icon {
     filter: invert(1);
+    width: 25px;
+    height: 25px;
 }
 
-/* =========================
-   Puntitos inferiores
-========================= */
-
-.hero-carousel .carousel-indicators{
-    bottom: -30px;
+/* Puntitos inferiores */
+.hero-carousel .carousel-indicators {
+    bottom: -10px;
 }
 
-.hero-carousel .carousel-indicators [data-bs-target]{
-    width: 10px;
-    height: 10px;
+.hero-carousel .carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background-color: #666;
+    background-color: #bbb;
+    border: none;
+    margin: 0 6px;
 }
 
-.hero-carousel .carousel-indicators .active{
-    background-color: #000;
+.hero-carousel .carousel-indicators .active {
+    background-color: var(--color-primary);
 }
 
-/* =========================
-   Carousel fin
-========================= */
-
-
 /* ============================================== */
-/* 7. ESTILOS DE COMPONENTES DE VENTAJA (CARD) - DISEÑO FLOTANTE */
+/* 7. SECCIÓN VENTAJAS (CARDS FLOTANTES CORREGIDAS) */
 /* ============================================== */
+#ventajas { background-color: #FFFFFF; min-height: 100vh; }
+#ventajas .lead { color: var(--color-dark); }
 
-/* A. Card de Fila Completa (Contenedor de Texto + Imagen) - LIMPIEZA TOTAL */
 .advantage-row-card {
-    /* ELIMINANDO EL BLOQUE GRANDE SOLICITADO */
     background-color: transparent;
     border-radius: 0;
     box-shadow: none;
     padding: 0;
-    margin-bottom: 10px;
-    /* Incrementamos el margen para separar filas */
+    margin-bottom: 20px;
     transition: none;
 }
 
-/* ELIMINACIÓN DE GRADIENTES ANTERIORES */
-.container>.advantage-row-card:nth-child(3),
-.container>.advantage-row-card:nth-child(4),
-.container>.advantage-row-card:nth-child(5) {
-    background-color: transparent;
-}
-
-.advantage-row-card:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* B. Card de Texto (Contenedor de Título y Párrafo) - LIMPIEZA Y TAMAÑO */
 .advantage-card {
-    /* LIMPIEZA TOTAL DEL RECUADRO DE TEXTO INTERNO */
     background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border: none;
-    /* 💡 NUEVO CÓDIGO: Establece un ancho máximo para el texto */
-    /* El 80% asegura que no se extienda por toda la columna en desktop */
-    max-width: 70%;
-    /* Centra el bloque de texto dentro de su columna */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100% !important;
+    margin: 0 !important;
+    min-height: 450px;
+    
+    /* BORDE REDONDEADO Y SOMBRA BLANCA/SUAVE */
+    border-radius: 30px; 
+  
+    
+    /* TRANSICIÓN: Esto asegura que el fondo entre con el efecto del texto */
+    transition: all 0.6s ease-out;
 }
 
-/* ... código de la sección 7 ... */
-
-/* -------------------- TAMAÑO DE TEXTO (Desktop) -------------------- */
-
-/* Títulos grandes y prominentes */
 .advantage-card .advantage-title {
     color: var(--color-primary);
     font-size: 2.5rem;
     font-weight: 800;
-    /* Un poco más de peso */
-    /* El título sigue usando Montserrat por herencia de h3 */
 }
 
-/* Párrafo grande para ocupar más pantalla */
 .advantage-card .advantage-text {
-
-    /* 💡 CAMBIO DE COLOR: Usamos un gris muy oscuro (mejor contraste) */
     color: #222222;
-
-    /* 💡 CAMBIO DE GROSOR: Aumentamos el peso a Semibold */
     font-weight: 500;
-
     font-size: 1.3rem;
     line-height: 1.6;
-    /* Mejoramos la lectura */
-    /* El párrafo usa Open Sans por herencia del body */
 }
 
-/* -------------------- TAMAÑO DE TEXTO (Móvil/Tablet) -------------------- */
-@media (max-width: 992px) {
+/* LÓGICA DE DIRECCIÓN Y GRADIENTES */
+@media (min-width: 992px) {
+    /* Texto a la IZQUIERDA (Imagen a la derecha) */
+    .col-lg-6:first-child .advantage-card {
+        background: linear-gradient(to right, 
+            rgba(255, 255, 255, 0) 0%,
+            rgba(138, 215, 235)50%, 
+            rgba(255, 255, 255, 0) 100%) !important;
+        padding: 5rem 6rem 5rem 4rem !important;
+        text-align: left !important;
+    }
+
+    
+}
+
+/* MÓVIL: CARD SIMPLE CON TRANSPARENCIA */
+@media (max-width: 991px) {
+    .advantage-card {
+        min-height: auto;
+        padding: 2.5rem 1.5rem !important;
+        text-align: center !important;
+        margin: 15px 10px !important;
+        
+        /* Fondo blanco con 70% de opacidad */
+        background: rgba(19, 160, 185, 0.1) !important;
+        
+        /* Efecto de desenfoque opcional (borra esta línea si no te gusta) */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        
+        /* Borde sutil para que la card se note sobre el fondo */
+      
+        
+        /* Sombra muy suave */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
     .advantage-card .advantage-title {
         font-size: 2rem;
-        /* Títulos más pequeños en móvil */
+        margin-bottom: 15px;
     }
-
+    
     .advantage-card .advantage-text {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 }
 
-
-
-
 /* ============================================== */
-/* 8. ELIMINACIÓN DE ESTILOS DE SCROLL REVEAL ANTIGUOS */
+/* 9. TESTIMONIOS (FLIP CARDS) */
 /* ============================================== */
-/* Se asume que estos se manejan ahora por GSAP */
-.advantage-item {
-    transition: none;
-}
-
-.scroll-start {
-    opacity: 0;
-    transform: none;
-}
-
-.advantage-item.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-
-/* ============================================== */
-/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) - Mantenidos */
-/* ============================================== */
-
-/* Contenedor principal: Configuración para el apilamiento responsive */
 .testimonial-carousel {
     display: flex;
     flex-wrap: wrap;
@@ -493,16 +494,8 @@ section {
     gap: 30px;
     padding-bottom: 0;
     background-color: var(--color-light);
-    scrollbar-width: none;
 }
 
-.testimonial-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-/* ---------------------------------------------------- */
-/* ESTILOS DE LA TARJETA (BASE: Desktop Ancho - 4 tarjetas por fila) */
-/* ---------------------------------------------------- */
 .testimonial-card {
     width: calc(25% - 23px);
     min-width: 200px;
@@ -516,97 +509,24 @@ section {
     margin-bottom: 30px;
 }
 
-/* ---------------------------------------------------- */
-/* RESPONSIVE: TABLETAS/DESKTOP MEDIO (Max 1200px - 2 tarjetas por fila) */
-/* ---------------------------------------------------- */
-@media (max-width: 1200px) {
-    .testimonial-card {
-        width: calc(50% - 15px);
-    }
-}
-
-/* ---------------------------------------------------- */
-/* RESPONSIVE: MÓVILES (Max 768px - 1 tarjeta por fila) */
-/* ---------------------------------------------------- */
-@media (max-width: 768px) {
-    .testimonial-card {
-        width: 100%;
-        height: 350px;
-    }
-}
-
-
-/* Contenedor interior para la rotación (se mantiene igual) */
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    border-radius: 15px;
 }
 
-/* Efecto Flip al hacer hover/tap (se mantiene igual) */
-/* ---------------------------------------------------- */
-/* ACTIVACIÓN DEL FLIP */
-/* ---------------------------------------------------- */
+.testimonial-card:hover .card-inner { transform: rotateY(180deg); }
 
-/* 1. CLASE que se activa con JS (Toque/Click) */
-.testimonial-card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-/* 2. ACTIVACIÓN CON HOVER SÓLO EN ESCRITORIO (Dispositivos que NO son táctiles) */
-@media (hover: hover) and (pointer: fine) {
-    .testimonial-card:hover .card-inner {
-        transform: rotateY(180deg);
-    }
-}
-
-/* Estilos de la parte Frontal y Trasera (se mantiene igual) */
-.card-front,
-.card-back {
+.card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 15px;
-    padding: 0;
-    overflow: hidden;
 }
 
-/* Estilos de la Cara Frontal (se mantiene igual) */
-.card-front {
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.testimonial-label {
-    position: relative;
-    z-index: 2;
-    padding: 15px;
-    /* Degradado sutil para el texto sobre la imagen */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4) 50%, transparent 100%);
-    color: var(--color-light);
-    font-weight: 600;
-    text-align: left;
-}
-
-/* Estilos de la Cara Trasera (se mantiene igual) */
 .card-back {
     background-color: var(--color-primary);
     color: var(--color-light);
@@ -618,701 +538,60 @@ section {
     text-align: center;
 }
 
-.testimonial-quote {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-.testimonial-author {
-    font-weight: 700;
-    line-height: 1.4;
-}
-
-/* Estilos de la Cara Frontal (se mantiene igual) */
-.card-front {
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
 /* ============================================== */
-/* 9. SECCIÓN: CASOS DE ÉXITO (Flip Card Testimonios) - Mantenidos */
-/* ============================================== */
-
-/* ... (código existente de la Sección 9 antes del @media) ... */
-
-
-/* 💡 NUEVO: INDICADOR VISUAL DE ESQUINA DOBLADA "PAGE CURL" (SOLO EN MOBILE) */
-@media (max-width: 992px) {
-    .testimonial-card {
-        position: relative;
-    }
-
-    /* ---------------------------------------------------- */
-    /* 1. MÁSCARA DE FONDO BLANCO (Tapa la imagen de la tarjeta) */
-    /* ---------------------------------------------------- */
-    .testimonial-card .card-front::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 0;
-        height: 0;
-
-        /* El tamaño de esta máscara debe ser igual o mayor al del pliegue (50px) */
-        border-style: solid;
-        border-width: 50px 50px 0 0;
-
-        /* Círculo interior invisible y el resto blanco (el borde derecho es el que tapa) */
-        border-color: transparent var(--color-light) transparent transparent;
-
-        z-index: 9;
-        /* Debe estar justo debajo del pliegue (::before) */
-        pointer-events: none;
-        /* No debe interferir con el clic */
-    }
-
-    /* ---------------------------------------------------- */
-    /* 2. EL PLIEGUE BLANCO CON SOMBRA DE PROFUNDIDAD (La solapa visible) */
-    /* ---------------------------------------------------- */
-    .testimonial-card .card-front::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 0;
-        height: 0;
-
-        /* Crea un triángulo con bordes. Tamaño del fold: 50px */
-        border-style: solid;
-        border-width: 50px 50px 0 0;
-
-        /* La parte visible (reverso) es el borde superior (COLOR BLANCO) */
-        border-color: var(--color-primary) transparent transparent transparent;
-
-        /* TRUCO: Box-shadow crea la sombra de profundidad. */
-        /* La sombra se proyecta sobre la MÁSCARA BLANCA (::after) o el resto de la imagen. */
-        box-shadow:
-            /* Sombra principal: Proyecta la sensación de profundidad */
-            -5px 5px 10px -5px rgba(0, 0, 0, 0.4),
-            /* Sombra de borde: Define la línea de pliegue */
-            -1px 1px 2px rgba(0, 0, 0, 0.2);
-        z-index: 10;
-        /* Debe estar encima de la máscara */
-        cursor: pointer;
-        border-radius: 7px;
-    }
-
-    /* ---------------------------------------------------- */
-    /* OCULTAR/MOSTRAR AL GIRAR */
-    /* ---------------------------------------------------- */
-
-    .testimonial-card.flipped .card-front::before,
-    .testimonial-card.flipped .card-front::after {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .testimonial-card .card-front::before,
-    .testimonial-card .card-front::after {
-        transition: opacity 0.3s ease;
-    }
-}
-
-
-/* SOLUCIÓN: Anular el min-height: 100vh
-       Y reducir los paddings SÓLO en pantallas grandes.
-    */
-@media (min-width: 1201px) {
-
-    #casodeexito {
-        /* 1. AQUÍ ESTÁ LA SOLUCIÓN: 
-               Anula el min-height: 100vh para que la sección 
-               mida solo lo que mide su contenido. */
-        min-height: auto;
-
-        /* 2. Mantenemos el padding-bottom reducido */
-        padding-bottom: 2rem;
-    }
-
-    /* 3. Mantenemos el padding-top reducido */
-    #comprar {
-        padding-top: 2rem;
-    }
-}
-
-
-/* ============================================== */
-/* 10. SECCIÓN: CONTACTO - Mantenidos */
-/* ============================================== */
-
-
-/* ============================================== */
-/* 10. SECCIÓN: CONTACTO - Mantenidos */
+/* 10. CONTACTO */
 /* ============================================== */
 #contacto {
     background-color: var(--color-primary) !important;
-    /* CAMBIO 1: Nuevo color de fondo: #6096ba */
+    padding: 60px 0;
 }
 
-/* ---------------------------------------------------- */
-/* FORMULARIO */
-/* ---------------------------------------------------- */
-
-/* Estilo para los labels */
-#contacto .form-label {
-    font-weight: 600;
-    color: var(--color-light) !important;
-    /* CAMBIO 2: Asegura que los labels sean blancos */
-}
-
-/* Estilo para los inputs y textareas */
-#contacto .form-control {
-    background-color: #FFFFFF;
-    border: 1px solid #ccc;
-    /* Un borde gris sutil */
-    color: var(--color-dark);
-    /* <-- CAMBIO AQUÍ (texto negro) */
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-/* Estilo del input al enfocar (focus) */
-#contacto .form-control:focus {
-    background-color: #FFFFFF;
-    border-color: var(--color-primary);
-    /* Borde azul al enfocar */
-    box-shadow: 0 0 0 0.25rem rgba(96, 150, 186, 0.25);
-    /* Sombra azul sutil */
-    color: var(--color-dark);
-    /* <-- CAMBIO AQUÍ (texto negro) */
-}
-
-/* ---------------------------------------------------- */
-/* INFORMACIÓN DE CONTACTO */
-/* ---------------------------------------------------- */
-
-/* Estilo para la lista de información de contacto */
-.contact-info li {
-    font-size: 1.1rem;
-    display: flex;
-    align-items: flex-start;
-    /* Alineación superior para evitar que el texto suba */
-}
-
-/* Color secundario para los íconos de contacto */
-.contact-info i {
-    color: var(--color-secondary);
-    font-size: 1.5rem;
-    width: 35px;
-    text-align: center;
-    padding-top: 3px;
-    /* Pequeño ajuste visual */
-}
-
-/* Estilo y hover para los enlaces de contacto */
-.contact-info a {
-    color: var(--color-light);
-    /* Color blanco para enlaces */
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.contact-info a:hover {
-    color: var(--color-secondary) !important;
-    /* Resalta con color secundario al pasar el mouse */
-}
-
-/* ---------------------------------------------------- */
-/* MAPA */
-/* ---------------------------------------------------- */
-
-.map-placeholder {
-    /* Contenedor del mapa/iframe */
-    border: 3px solid var(--color-secondary);
-    /* Borde secundario para destacar */
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.map-placeholder iframe {
-    /* Asegura que el iframe ocupe todo el espacio */
-    display: block;
-}
+#contacto .form-label { color: var(--color-light) !important; font-weight: 600; }
+#contacto .form-control { background-color: #FFFFFF; color: var(--color-dark); border-radius: 8px; }
 
 /* ============================================== */
-/* 11. SECCIÓN: COMPRAR (Pricing Cards) */
+/* 11. PRICING CARDS */
 /* ============================================== */
-
-
-
-#comprar h2 {
-    color: #000000;
-    /* Título de sección en blanco */
-}
-
 .pricing-card {
     background-color: var(--color-light);
-    /* Fondo de la tarjeta en blanco */
     border: 3px solid transparent;
     transition: all 0.3s ease;
 }
 
-.pricing-card:hover {
-    border: 3px solid var(--color-primary);
-    /* Borde primario al pasar el mouse */
+.pricing-card:hover { border: 3px solid var(--color-primary); }
+
+/* Ajustes finales de visibilidad */
+#hero, section { background: transparent !important; }
+.navbar-brand img { height: 40px; width: auto; }
+
+/* ============================================== 
+   ESTO ES LO QUE FIJA Y AJUSTA LA IMAGEN EN MOBILE
+   ============================================== */
+
+body::before {
+    content: "";
+    position: fixed; /* Esto deja la imagen quieta */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/kurp2.png");
+    background-size: cover;      /* Cubre la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    z-index: -1;                 /* La manda al fondo */
 }
 
-.pricing-card h3,
-.pricing-card h5 {
-    color: var(--color-dark) !important;
-}
-
-/* Estilo para los botones de selección de talle */
-.talle-btn {
-    /* Hereda .btn-secondary-custom-border del CSS existente */
-    transition: all 0.2s;
-    background-color: transparent !important;
-    color: var(--color-primary) !important;
-    border-color: var(--color-secondary);
-}
-
-.talle-btn.selected {
-    background-color: var(--color-primary) !important;
-    color: var(--color-light) !important;
-    border-color: var(--color-primary);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Aplica 'overflow-x: hidden' solo a las secciones 
-que usan animaciones de fade-left/right.
-*/
-#ventajas,
-#comprar,
-#contacto {
-    overflow-x: hidden;
-}
-
-/* ============================================== */
-/* 12. FIX: ALTURA DEL HERO EN MOBILE */
-/* ============================================== */
-
-/* Esta regla se aplica solo a pantallas MÁS PEQUEÑAS 
-que 992px (el punto donde Bootstrap apila tus columnas).
-*/
-@media (max-width: 991.98px) {
-
-    /* 1. Anula el 'height: 100vh' de tu CSS.
-    'height: auto' permite que la sección crezca
-    verticalmente tanto como necesite para mostrar 
-    todo el contenido (texto + imagen apilados).
-    */
-    #hero {
-        height: auto;
-    }
-
-    /* 2. Anula el 'min-height: 80vh' que tienes 
-    en tu HTML (style="...").
-    Usamos !important para tener prioridad
-    sobre el estilo "inline" del HTML.
-    */
-    #hero .container {
-        min-height: auto !important;
+/* Ajuste específico para que en Mobile no se pierda el encuadre */
+@media (max-width: 768px) {
+    body::before {
+        background-position: center top; /* Evita que se vea mal el recorte */
     }
 }
 
-/* ============================================== */
-/* 13. ESTILO BOTÓN "REALIZAR ORDEN" DESHABILITADO */
-/* ============================================== */
-
-/* Sobreescribimos el estilo de Bootstrap para .disabled
-  en nuestro botón personalizado.
-*/
-.btn-primary-custom.disabled,
-.btn-primary-custom:disabled {
-
-    /* 1. Lo hacemos 100% visible (opaco) pero con colores "apagados" */
-    opacity: 1 !important;
-    background-color: #E0E0E0;
-    /* Gris claro (tu color --color-accent) */
-    border-color: #E0E0E0;
-    color: #888888;
-    /* Texto gris oscuro */
-
-    /* 2. Nos aseguramos de que no se pueda clickear */
-    pointer-events: none;
-
-    /* 3. (Opcional) Mostramos un cursor de "no permitido" al pasar el mouse */
-    cursor: not-allowed;
-}
-
-/* ============================================== */
-/* 14. ESTILOS DEL FOOTER COMPLETO */
-/* ============================================== */
-
-/* Estilos para los enlaces de navegación del footer */
-.footer-nav-links li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-link {
-    color: #e0e0e0;
-    /* Un blanco un poco más suave */
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.footer-link:hover {
-    color: var(--color-primary);
-    /* Resalta con el color primario */
-    text-decoration: underline;
-}
-
-/* Estilos para la lista de contacto (para alinear íconos) */
-.contact-info-footer i {
-    color: var(--color-primary);
-    /* Íconos en color primario */
-    width: 20px;
-    /* Ancho fijo para alinear el texto */
-    text-align: center;
-}
-
-/* Estilos para los íconos de redes sociales */
-.social-icons .social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Fondo semi-transparente */
-    color: var(--color-light);
-    font-size: 1.1rem;
-    margin-right: 10px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.social-icons .social-icon:hover {
-    background-color: var(--color-primary);
-    /* Fondo primario al pasar el mouse */
-    color: var(--color-light);
-    transform: translateY(-3px);
-    /* Efecto "lift" */
-}
-
-/* ============================================== */
-/* 15. ESTILOS CONTACTO Y FOOTER CTA */
-/* ============================================== */
-
-/* Subtítulo en la sección Contacto (blanco suave) */
-.contact-subheading {
-    color: #f0f0f0;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Texto de propuesta en el Footer */
-.footer-proposal-text {
-    color: #e0e0e0;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-#hero {
+/* IMPORTANTE: Borra el background-image que tengas en 'html' o 'body' 
+   para que no se duplique la imagen o se tape. */
+html, body {
     background: transparent !important;
 }
 
-section {
-    background-color: transparent !important;
-}
-
-/* ==============================================
-16. RESPONSIVE MOBILE
-============================================== */
-
-@media (max-width: 768px){
-
-/* NAVBAR */
-
-#main-navbar{
-    left:10px;
-    right:10px;
-    top:10px;
-    padding:8px 10px;
-}
-
-/* HERO */
-
-#hero{
-    padding-top:40px;
-}
-
-#hero h1{
-    font-size:2rem;
-    line-height:1.3;
-}
-
-#hero p.lead{
-    font-size:1rem;
-}
-
-/* BOTÓN HERO */
-
-#hero .btn{
-    width:100%;
-    margin-top:10px;
-}
-
-/* CAROUSEL */
-
-.hero-carousel{
-    max-width:90%;
-    margin-top:30px;
-}
-
-.hero-carousel img{
-    max-height:320px;
-}
-
-/* flechas dentro del carousel en mobile */
-
-.hero-carousel .carousel-control-prev{
-    left:5px;
-}
-
-.hero-carousel .carousel-control-next{
-    right:5px;
-}
-
-/* ocultar flechas si pantalla muy chica */
-
-@media (max-width:480px){
-.hero-carousel .carousel-control-prev,
-.hero-carousel .carousel-control-next{
-    display:none;
-}
-}
-
-/* puntitos */
-
-.hero-carousel .carousel-indicators{
-    bottom:-20px;
-}
-
-/* VENTAJAS */
-
-.advantage-card{
-    max-width:100%;
-}
-
-.advantage-card .advantage-title{
-    font-size:1.7rem;
-}
-
-.advantage-card .advantage-text{
-    font-size:1rem;
-}
-
-/* TESTIMONIOS */
-
-.testimonial-card{
-    height:320px;
-}
-
-/* CONTACTO */
-
-#contacto .form-control{
-    font-size:16px;
-}
-
-/* FOOTER */
-
-.footer-proposal-text{
-    text-align:center;
-}
-
-}
-
-/* ============================================== */
-/* FIXES GENERALES MOBILE Y VISIBILIDAD */
-/* ============================================== */
-
-/* Evitar que Bootstrap pierda colores por transparencias */
-section{
-    background-color: transparent;
-}
-
-#hero{
-    background: transparent;
-}
-
-/* ============================================== */
-/* NAVBAR */
-/* ============================================== */
-
-/* Logo */
-.navbar-brand img{
-    height:40px;
-    width:auto;
-}
-
-/* Botón hamburguesa visible */
-.navbar-toggler{
-    border:none;
-}
-
-.navbar-toggler-icon{
-    background-image:none;
-    width:24px;
-    height:2px;
-    background-color:#000;
-    position:relative;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after{
-    content:"";
-    position:absolute;
-    width:24px;
-    height:2px;
-    background-color:#000;
-    left:0;
-}
-
-.navbar-toggler-icon::before{
-    top:-7px;
-}
-
-.navbar-toggler-icon::after{
-    top:7px;
-}
-
-/* ============================================== */
-/* NAVBAR MOBILE */
-/* ============================================== */
-
-@media (max-width:991px){
-
-#main-navbar{
-    left:10px;
-    right:10px;
-    top:10px;
-}
-
-.navbar-nav{
-    text-align:center;
-}
-
-.navbar-nav .nav-item{
-    margin:10px 0;
-}
-
-}
-
-/* ============================================== */
-/* BACKGROUND FIX MOBILE */
-/* ============================================== */
-
-@media (max-width:768px){
-
-body{
-    background-attachment:scroll;
-}
-
-}
-
-/* ============================================== */
-/* HERO MOBILE */
-/* ============================================== */
-
-@media (max-width:991px){
-
-#hero{
-    height:auto;
-}
-
-#hero h1{
-    font-size:2rem;
-}
-
-#hero p.lead{
-    font-size:1rem;
-}
-
-}
-
-/* ============================================== */
-/* CAROUSEL MOBILE */
-/* ============================================== */
-
-@media (max-width:768px){
-
-.hero-carousel{
-    aspect-ratio:1 / 1;
-}
-
-/* ocultar flechas en mobile */
-.hero-carousel .carousel-control-prev,
-.hero-carousel .carousel-control-next{
-    display:none;
-}
-
-/* indicadores más cerca */
-.hero-carousel .carousel-indicators{
-    bottom:-20px;
-}
-
-}
-
-/* ============================================== */
-/* ESPACIADO GENERAL MOBILE */
-/* ============================================== */
-
-@media (max-width:768px){
-
-body{
-    padding:20px;
-}
-
-section{
-    padding-top:60px;
-    padding-bottom:60px;
-}
-
-}
-
-
-/* ==============================================
-FIX BACKGROUND MOBILE DEFINITIVO
-============================================== */
-
-body::before{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100vw;
-height:100vh;
-
-background-image:url("../img/kurp2.png");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-
-z-index:-1;
-}
-
-/* evita bugs en mobile */
-@media (max-width:768px){
-
-body::before{
-background-position:center top;
-}
-
-}

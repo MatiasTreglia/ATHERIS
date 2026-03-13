@@ -19,59 +19,58 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 0.9,
         ease: "power1.in",
     });
+// ==============================================
+// EFECTO 2: VENTAJAS (Optimizado con matchMedia)
+// ==============================================
+let mm = gsap.matchMedia();
 
-    // ==============================================
-    // EFECTO 2: VENTAJAS (Entrada Secuencial Lenta y Escalonada)
-    // ==============================================
+mm.add("(min-width: 992px)", () => {
+    // TODO lo que esté aquí adentro SOLO funcionará en Escritorio (> 991px)
     const advantageRows = gsap.utils.toArray("[data-scroll-item]");
 
     advantageRows.forEach((row, i) => {
+        const isOdd = i % 2 !== 0;
+        const enterFromX = isOdd ? 100 : -100;
 
-        // 1. Determinamos la dirección de entrada
-        const isOdd = i % 2 !== 0; // Fila Impar (1, 3, 5...)
-        const enterFromX = isOdd ? 100 : -100; // La dirección del texto/tarjeta
-
-        // 2. Selectores de los elementos internos
         const title = row.querySelector(".advantage-title");
         const text = row.querySelector(".advantage-text");
         const image = row.querySelector(".advantage-image");
 
-        // 3. Creamos la Timeline para la secuencia de entrada
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: row,
-                start: "top 60%",
-                toggleActions: "restart none none reverse",
-                // markers: true, 
+                start: "top 75%", // Un poco más abajo para que se vea mejor el efecto
+                toggleActions: "play none none reverse",
             }
         });
 
-        // --- SECUENCIA DE ANIMACIÓN USANDO .from() ---
-
-        // Paso 1: Título
         tl.from(title, {
             opacity: 0,
             x: enterFromX,
-            duration: 1.0, 
+            duration: 1,
             ease: "power2.out",
-        }, 0); // Comienza en el tiempo 0
-
-        // Paso 2: Imagen
-        tl.from(image, {
+        }, 0)
+        .from(image, {
             opacity: 0,
             x: enterFromX * -1,
-            duration: 1.0, 
+            duration: 1,
             ease: "power3.out"
-        }, 0.2); // Comienza 0.2s después del título
-
-        // Paso 3: Texto
-        tl.from(text, {
+        }, 0.2)
+        .from(text, {
             opacity: 0,
             x: enterFromX,
-            duration: 1.0, 
+            duration: 1,
             ease: "power2.out",
-        }, 0.5); // Comienza 0.5s (0.3s después de la imagen)
+        }, 0.5);
     });
+
+    return () => { 
+        // Esto limpia las animaciones si pasas de escritorio a mobile sin refrescar
+        gsap.set("[data-scroll-item] .advantage-title, [data-scroll-item] .advantage-text, [data-scroll-item] .advantage-image", {
+            clearProps: "all"
+        });
+    };
+});
 
     // ==============================================
     // EFECTO 3: PRODUCTO (Pinning y Scroll) - Mantenido
@@ -264,3 +263,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+
+  AOS.init({
+    duration: 1000,
+    disable: 'mobile' // Esto desactiva AOS automáticamente en dispositivos móviles
+  });
