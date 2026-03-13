@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // === SELECTORES (SIN CAMBIOS) ===
+    // === SELECTORES ===
     const orderList = document.getElementById('order-summary-list');
     const subtotalElement = document.getElementById('order-subtotal');
     const totalElement = document.getElementById('order-total');
@@ -10,18 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const facturaCheck = document.getElementById('factura-a-check');
     const facturaFields = document.getElementById('factura-a-fields');
 
-    // === LÓGICA DE CARGA (SIN CAMBIOS) ===
-
-    // 1. Función para Cargar el Resumen del Pedido
+    // === 1. CARGAR RESUMEN DEL PEDIDO ===
     function loadOrderSummary() {
         const cartData = JSON.parse(localStorage.getItem('atherisCart'));
         orderList.innerHTML = "";
 
-        if (!cartData || cartData.items.length === 0) {
-            orderList.innerHTML = '<li class="list-group-item">Tu carrito está vacío.</li>';
-            setTimeout(() => {
-                window.location.href = '../index.html'; // Asegúrate que esta ruta sea correcta
-            }, 2000);
+        // Si el carrito está vacío, solo mostramos el mensaje. 
+        // NO redirigimos aquí para que el usuario pueda volver a comprar sin ser expulsado.
+        if (!cartData || !cartData.items || cartData.items.length === 0) {
+            orderList.innerHTML = '<li class="list-group-item text-center">Tu carrito está vacío.</li>';
+            if(itemCountElement) itemCountElement.textContent = "0";
             return;
         }
 
@@ -43,98 +41,78 @@ document.addEventListener('DOMContentLoaded', function () {
             pedidoDetallesString += `${item.title} (x${item.quantity}) - $${item.price * item.quantity}\n`;
         });
 
-        subtotalElement.textContent = `$${cartData.totalPrice}`;
-        totalElement.textContent = `$${cartData.totalPrice}`;
-        itemCountElement.textContent = totalItems;
-        hiddenPedidoDetalles.value = pedidoDetallesString;
-        hiddenPedidoTotal.value = `$${cartData.totalPrice}`;
+        if(subtotalElement) subtotalElement.textContent = `$${cartData.totalPrice}`;
+        if(totalElement) totalElement.textContent = `$${cartData.totalPrice}`;
+        if(itemCountElement) itemCountElement.textContent = totalItems;
+        if(hiddenPedidoDetalles) hiddenPedidoDetalles.value = pedidoDetallesString;
+        if(hiddenPedidoTotal) hiddenPedidoTotal.value = `$${cartData.totalPrice}`;
     }
 
-    // 2. Función para manejar campos condicionales (Factura A)
-function setupConditionalFields() {
-    if (!facturaCheck || !facturaFields) return;
+    // === 2. MANEJAR CAMPOS DE FACTURA A ===
+    function setupConditionalFields() {
+        if (!facturaCheck || !facturaFields) return;
 
-    // --- INICIO DE LA MODIFICACIÓN ---
+        const cuitInput = document.querySelector('[name="cuit"]');
+        const condicionIvaInput = document.querySelector('[name="condicion_iva"]');
 
-    // 1. Selectores para los campos de Factura A
-    // (Asumo que tu campo de Razón Social tiene el id="razon_social")
-    // (Tu Google Sheet lo llama 'condicion_iva' y 'cuit')
-    const cuitInput = document.querySelector('[name="cuit"]');
-    const razonSocialInput = document.querySelector('[name="razonSocial"]'); // <-- CAMBIA ESTO si tu 'name' es otro
-    const condicionIvaInput = document.querySelector('[name="condicion_iva"]');
+        facturaCheck.addEventListener('change', function() {
+            const isChecked = this.checked;
+            facturaFields.style.display = isChecked ? 'flex' : 'none';
 
-    facturaCheck.addEventListener('change', function() {
-        const isChecked = this.checked;
+            // Requerir solo si el checkbox está marcado
+            if (cuitInput) cuitInput.required = isChecked;
+            if (condicionIvaInput) condicionIvaInput.required = isChecked;
+        });
+    }
 
-        // 2. Muestra/oculta el contenedor
-        facturaFields.style.display = isChecked ? 'flex' : 'none';
-
-        // 3. Añade/quita 'required' dinámicamente
-        // Esto es crucial para que el formulario se pueda enviar
-        // si la factura A NO está marcada.
-        if (cuitInput) cuitInput.required = isChecked;
-        if (razonSocialInput) razonSocialInput.required = isChecked;
-        if (condicionIvaInput) condicionIvaInput.required = isChecked;
-    });
-
-    // --- FIN DE LA MODIFICACIÓN ---
-}
-
-    // === INICIALIZACIÓN (SIN CAMBIOS) ===
+    // === INICIALIZACIÓN ===
     loadOrderSummary();
     setupConditionalFields();
 
-    // ===============================================
-    // === NUEVA LÓGICA DE ENVÍO (A PRUEBA DE CORS) ===
-    // ===============================================
+    // === 3. LÓGICA DE ENVÍO (GOOGLE SHEETS) ===
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbw-9PVbpO9kyIvIjmYXf9vD27qSiwQUTYNnkmJs6_CCA8IFcwiBDUUf47D4h6wN9IW75Q/exec';
 
-    // 1. Pega la URL de tu script (la que ya tenías)
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzCTlcKV7yM9NjhMba7qFv_kqsX7eZEgeyG3CyHp3dXFWaFipMKVWKQ_cY5JirOWZGAhQ/exec'; // <-- TU URL
-
-    // 2. Busca el formulario
     const form = document.forms['checkout-form'];
     const submitButton = document.querySelector('button[type="submit"][form="checkout-form"]');
 
-    // 3. Agrega el listener
     if (form) {
         form.addEventListener('submit', e => {
             e.preventDefault(); 
 
-            if(submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
+            // Verificar si el carrito existe antes de enviar
+            if (!localStorage.getItem('atherisCart')) {
+                Swal.fire({ title: "Carrito vacío", text: "No hay productos para procesar.", icon: "warning" });
+                return;
             }
 
-            // Envía los datos con 'mode: no-cors'
+            if(submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Procesando Orden...';
+            }
+
             fetch(scriptUrl, {
                 method: 'POST', 
                 body: new FormData(form),
-                mode: 'no-cors' // <-- LA SOLUCIÓN MÁGICA
+                mode: 'no-cors' 
             })
             .then(() => {
-                // COMO ESTAMOS EN MODO 'no-cors', NO PODEMOS LEER LA RESPUESTA.
-                // Simplemente asumimos que funcionó (el 99% de las veces lo hará).
-                
-                // Mostramos la alerta de éxito INMEDIATAMENTE
+                // ÉXITO: Mostramos la alerta
                 Swal.fire({
                     title: "¡Orden Generada!",
-                    text: "Tu orden de compra fue generada correctamente.",
-                    icon: "success"
+                    text: "Tu orden de compra fue enviada. Nos contactaremos pronto.",
+                    icon: "success",
+                    confirmButtonColor: '#6096ba'
+                }).then(() => {
+                    // LIMPIEZA: Solo ocurre después de que el usuario acepta el mensaje de éxito
+                    localStorage.removeItem('atherisCart');
+                    window.location.href = '../index.html'; 
                 });
-
-                localStorage.removeItem('atherisCart');
-                
-                // Redirigimos al inicio
-                setTimeout(() => {
-                    window.location.href = '../index.html'; // Asegúrate que esta ruta sea correcta
-                }, 2000);
-
-            }).catch(error => {
-                // Este catch ahora es solo para errores de red MUY graves (ej. sin internet)
+            })
+            .catch(error => {
                 console.error('Error!', error.message);
                 Swal.fire({
                     title: "Error de Red",
-                    text: "No se pudo conectar. Revisa tu conexión a internet.",
+                    text: "No se pudo conectar con el servidor.",
                     icon: "error"
                 });
                 if(submitButton) {

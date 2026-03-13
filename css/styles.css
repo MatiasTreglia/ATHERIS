@@ -132,7 +132,19 @@ html, body {
     /* También quitamos el borde del botón si te molesta */
     --bs-navbar-toggler-border-color: transparent !important;
 }
+/* ==============================================
+   LINKS DEL NAVBAR
+   ============================================== */
 
+#main-navbar .nav-link {
+    font-weight: 600; /* un poco más negrita */
+    color: #000000;
+    transition: color 0.25s ease;
+}
+
+#main-navbar .nav-link:hover {
+    color: var(--color-primary); /* celeste de tu paleta */
+}
 /* OPCIONAL: Si lo preferís en el AZUL de tu marca (#6096ba) */
 /*
 .navbar-dark, [data-bs-theme=dark] {
@@ -442,7 +454,7 @@ section {
     .col-lg-6:first-child .advantage-card {
         background: linear-gradient(to right, 
             rgba(255, 255, 255, 0) 0%,
-            rgba(138, 215, 235)50%, 
+            rgba(3, 175, 218, 0.13)50%, 
             rgba(255, 255, 255, 0) 100%) !important;
         padding: 5rem 6rem 5rem 4rem !important;
         text-align: left !important;
@@ -538,6 +550,15 @@ section {
     text-align: center;
 }
 
+.btn-primary-custom:disabled, 
+.btn-primary-custom.disabled {
+    background-color: transparent !important;
+    border: 2px solid #6c757d !important;
+    color: #6c757d !important;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
 /* ============================================== */
 /* 10. CONTACTO */
 /* ============================================== */
@@ -593,5 +614,132 @@ body::before {
    para que no se duplique la imagen o se tape. */
 html, body {
     background: transparent !important;
+}
+
+/* ============================================== */
+/* 10. CONTACTO - LIMPIEZA TOTAL */
+/* ============================================== */
+
+#contacto {
+    background: transparent !important;
+    min-height: auto !important; /* Permitimos que la altura la de el contenido */
+}
+
+/* Forzamos visibilidad de la card */
+/* Busca y reemplaza tu clase .contact-card con esta */
+.contact-card {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-radius: 40px !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    overflow: hidden;
+    
+    /* Añade esto: */
+    will-change: transform, opacity; 
+    backface-visibility: hidden;
+    transform: translateZ(0); /* Fuerza aceleración por hardware */
+}
+
+/* Etiquetas del formulario siempre visibles (Negras) */
+#contact-form .form-label {
+    color: #333333 !important;
+    font-weight: 700;
+}
+
+/* Inputs con texto oscuro para que se vea lo que escriben */
+#contact-form .form-control {
+    color: #000000 !important;
+}
+
+#contact-form .form-control:focus {
+    border-color: var(--color-primary);
+    background-color: #ffffff !important;
+}
+
+/* Fix para AOS en móviles que a veces oculta elementos */
+[data-aos] {
+    pointer-events: auto !important;
+}
+
+/* ============================================== */
+/* 12. FOOTER (FONDO TRASLÚCIDO Y TIPOGRAFÍA)    */
+/* ============================================== */
+
+footer.bg-dark-section {
+    /* Negro con 85% de opacidad para que se trasluzca el fondo sutilmente */
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Open Sans', sans-serif; /* Consistencia con el body */
+}
+
+footer h5 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+/* Estilos de los Links */
+.footer-link {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 3px 0;
+    font-weight: 400;
+}
+
+.footer-link:hover {
+    color: var(--color-primary) !important;
+    transform: translateX(5px); /* Efecto de desplazamiento al pasar el mouse */
+}
+
+/* Iconos Sociales */
+.social-icons .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Texto de descripción y propuesta */
+footer p, .footer-proposal-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cccccc !important;
+}
+
+/* Ajuste del HR */
+footer hr {
+    opacity: 0.2;
+    border-color: #ffffff !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    footer {
+        text-align: center !important;
+    }
+    .footer-link:hover {
+        transform: none; /* Quitamos el desplazamiento en móvil */
+    }
+    .contact-info-footer li {
+        justify-content: center;
+    }
 }
 
