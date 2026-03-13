@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem('atherisCart', JSON.stringify(cartData));
 
                 // Ahora sí, redirigimos
-                window.location.href = '/html/checkout.html';
+                window.location.href = './html/checkout.html';
             } else {
                 Swal.fire({
                     title: "Carrito vacío",
