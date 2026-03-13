@@ -65,6 +65,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #FFFFFF !important;
     position: fixed;
     top: 15px;
+    min-height: 56px;
     
     /* Centrado sin transform (evita errores de ancho en móvil) */
     left: 0;
@@ -95,6 +96,8 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     width: 100%;
 }
+
+
 
 /* Ajuste móvil para evitar desbordes */
 @media (max-width: 991px) {
@@ -211,18 +214,19 @@ html, body {
         position: static !important; /* Ahora es parte del flujo central */
     }
     
-    /* Efecto al hacer scroll (opcional): si querés que se achique un poco */
+    /* Mantener mismo tamaño que el resto del navbar */
     #main-navbar {
-        padding: 4px 20px;
+        padding: 8px 20px;
     }
-}
+} 
+
 
 /* Ajuste para móvil: que vuelva a ocupar casi todo el ancho */
 @media (max-width: 991px) {
     #main-navbar {
         width: calc(100% - 40px);
         border-radius: 14px;
-        padding: 5px 15px;
+        padding: 8px 20px;
     }
 }
 
@@ -583,7 +587,11 @@ section {
 
 /* Ajustes finales de visibilidad */
 #hero, section { background: transparent !important; }
-.navbar-brand img { height: 40px; width: auto; }
+#main-navbar .navbar-brand img {
+    height: 40px !important;
+    width: auto;
+    max-height: none !important;
+}
 
 /* ============================================== 
    ESTO ES LO QUE FIJA Y AJUSTA LA IMAGEN EN MOBILE
@@ -742,4 +750,115 @@ footer hr {
         justify-content: center;
     }
 }
+/* ============================================== */
+/* 13. SOLUCIÓN FINAL: IGUALACIÓN Y CENTRADO      */
+/* ============================================== */
 
+/* 1. Ajuste del contenedor principal (Cápsula blanca) */
+body.checkout-page #main-navbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important; /* Liberamos el overflow para que no corte el logo */
+    
+    padding: 8px 20px !important; /* Igual que tu sección 2 */
+}
+
+/* 2. Reset del contenedor interno de Bootstrap */
+body.checkout-page #main-navbar .container-fluid {
+    display: flex !important;
+    justify-content: center !important; /* Forzamos el centro */
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. El Logo: eliminamos floats y forzamos centrado */
+body.checkout-page #main-navbar .navbar-brand {
+    margin: 0 auto !important; /* Margen automático es infalible en Flexbox */
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    position: static !important;
+    transform: none !important;
+    float: none !important;
+}
+
+
+
+/* 5. Limpieza absoluta de elementos que empujan */
+body.checkout-page #main-navbar .navbar-toggler,
+body.checkout-page #main-navbar .navbar-collapse,
+body.checkout-page #main-navbar .ms-auto {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    margin: 0 !important;
+}
+
+/* 6. Ajuste Mobile: Respetando tus reglas de la sección 3 */
+@media (max-width: 991px) {
+    body.checkout-page #main-navbar {
+        width: 95% !important;
+        padding: 8px 20px !important;
+        border-radius: 20px !important;
+    }
+    
+}
+
+/* ==============================================
+   FIX ALTURA NAVBAR (MISMO TAMAÑO EN TODAS LAS PÁGINAS)
+   ============================================== */
+
+#main-navbar{
+    height:56px !important;
+    min-height:56px !important;
+    padding:0 20px !important;
+    display:flex;
+    align-items:center;
+}
+
+/* centrado vertical del contenido */
+#main-navbar .container-fluid{
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+
+/* asegura que el logo quede centrado verticalmente */
+#main-navbar .navbar-brand{
+    display:flex;
+    align-items:center;
+    height:100%;
+}
+
+/* ==============================================
+   FIX TAMAÑO LOGO (MISMO EN TODAS LAS PÁGINAS)
+   ============================================== */
+
+#main-navbar .navbar-brand{
+    height:40px !important;
+    display:flex;
+    align-items:center;
+}
+
+#main-navbar .navbar-brand img{
+    height:40px !important;
+    width:auto !important;
+    display:block;
+}
+
+/* Tamaño del logo global */
+.logo-navbar{
+    height:45px !important;
+    width:auto !important;
+    max-height:45px !important;
+}
+
+/* Forzar tamaño también en checkout */
+body.checkout-page #main-navbar img{
+    height:45px !important;
+    max-height:45px !important;
+    width:auto !important;
+}
