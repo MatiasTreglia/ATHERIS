@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
             talleInputs.forEach(input => {
                 const quantity = parseInt(input.value) || 0;
                 if (quantity > 0) {
-                    const title = input.getAttribute('data-name');
+                    const title = input.getAttribute('data-talle');
                     const price = parseFloat(input.getAttribute('data-price'));
                     
                     itemsParaComprar.push({
