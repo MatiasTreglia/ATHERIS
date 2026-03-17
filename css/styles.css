@@ -862,3 +862,98 @@ body.checkout-page #main-navbar img{
     max-height:45px !important;
     width:auto !important;
 }
+
+/* ============================================== */
+/* 14. SECCIÓN TALLES */
+/* ============================================== */
+
+#talles {
+    background: transparent;
+}
+
+/* CONTENEDOR CENTRADO */
+#talles .row {
+    justify-content: center;
+    text-align: center;
+}
+
+/* CARD AJUSTADA A LA IMAGEN */
+.talles-card {
+    background-color: var(--color-light);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+
+    padding: 10px;
+
+    display: inline-block;
+    width: auto !important; /* 🔥 rompe bootstrap */
+}
+
+/* HOVER */
+.talles-card:hover {
+    border: 3px solid var(--color-primary);
+}
+
+/* IMAGEN */
+.talles-img {
+    width: 550px;      /* 🔥 ajustá este valor a gusto */
+    max-width: 100%;   /* responsive */
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .talles-card {
+        padding: 6px;
+        border-radius: 20px;
+    }
+
+    .talles-img {
+        width: 100%;
+    }
+}
+
+/* FIX ESPACIADO MOBILE ENTRE TALLES Y COMPRAR */
+@media (max-width: 768px) {
+
+    #talles {
+        min-height: auto !important;
+        padding-bottom: 30px; /* 🔥 controla el espacio */
+    }
+
+    #comprar {
+        min-height: auto !important;
+        padding-top: 30px; /* 🔥 controla el espacio */
+    }
+
+}
+
+/* ==============================================
+   FIX REAL MOBILE (FORZADO)
+============================================== */
+@media (max-width: 768px) {
+
+    /* 🔥 Rompemos TODOS los 100vh */
+    section,
+    #ventajas,
+    #talles,
+    #comprar {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    /* 🔥 Hero controlado (no tan alto) */
+    #hero {
+        min-height: 85vh !important;
+        height: auto !important;
+    }
+
+    /* 🔥 Espaciado real entre secciones */
+    section {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+}
