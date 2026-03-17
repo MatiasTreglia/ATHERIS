@@ -1066,3 +1066,14 @@ body.checkout-page #main-navbar img{
     text-decoration: underline;
     opacity: 0.8;
 }
+
+/* ==============================================
+   FIX ESPACIADO INFERIOR CHECKOUT MOBILE
+============================================== */
+@media (max-width: 768px) {
+
+    #checkout-section {
+        padding-bottom: 120px !important; /* 🔥 más aire abajo */
+    }
+
+}
