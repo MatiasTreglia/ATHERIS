@@ -957,3 +957,112 @@ body.checkout-page #main-navbar img{
     }
 
 }
+
+/* ==============================================
+   HERO TIPOGRAFÍA SOLO MOBILE (FORZADO)
+============================================== */
+@media (max-width: 768px) {
+
+    #hero h1 {
+        font-size: 2.4rem !important;
+        line-height: 1.2 !important;
+    }
+
+    #hero p.lead {
+        font-size: 1.2rem !important;
+    }
+
+}
+
+/* ==============================================
+   FIX MENU MOBILE (NO EMPUJA HEADER)
+============================================== */
+@media (max-width: 991px) {
+
+    /* El navbar no cambia de altura */
+    #main-navbar {
+        position: fixed;
+    }
+
+    /* 🔥 CLAVE: sacamos el menú del flujo */
+    .navbar-collapse {
+        position: absolute;
+        top: 70px; /* altura debajo del navbar */
+        left: 0;
+        width: 100%;
+        
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+
+        z-index: 999;
+
+        /* animación opcional */
+        transition: all 0.3s ease;
+    }
+
+    /* Evita que Bootstrap meta altura extra */
+    .navbar {
+        align-items: center !important;
+    }
+
+    /* Asegura que el contenedor no crezca */
+    #main-navbar .container-fluid {
+        position: relative;
+    }
+}
+
+/* ==============================================
+   FIX ANIMACIÓN MENU MOBILE (SUAVE Y SIN DELAY)
+============================================== */
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+
+        z-index: 999;
+
+        /* 🔥 NUEVA ANIMACIÓN */
+        opacity: 0;
+        transform: translateY(-15px) scale(0.98);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        pointer-events: none;
+    }
+
+    .navbar-collapse.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    /* 🔥 Desactivamos SOLO la animación conflictiva */
+    .collapsing {
+        height: auto !important;
+        transition: none !important;
+    }
+}
+
+.ver-talles-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 4px;
+    transition: all 0.2s ease;
+}
+
+.ver-talles-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
