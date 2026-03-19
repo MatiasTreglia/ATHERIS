@@ -174,12 +174,7 @@ html, body {
 
 /* Ajuste para móvil: que no flote tanto y sea más sólido */
 @media (max-width: 991px) {
-    #main-navbar {
-        width: 95%;
-        top: 10px;
-        padding: 8px 20px;
-        border-radius: 20px; /* Menos redondeado en móvil queda mejor */
-    }
+
     
     /* El menú desplegable en móvil */
     .navbar-collapse {
@@ -215,20 +210,12 @@ html, body {
     }
     
     /* Mantener mismo tamaño que el resto del navbar */
-    #main-navbar {
-        padding: 8px 20px;
-    }
+   
 } 
 
 
 /* Ajuste para móvil: que vuelva a ocupar casi todo el ancho */
-@media (max-width: 991px) {
-    #main-navbar {
-        width: calc(100% - 40px);
-        border-radius: 14px;
-        padding: 8px 20px;
-    }
-}
+
 
 /* ============================================== */
 /* 4. ESTILOS DE BOTONES PERSONALIZADOS */
@@ -979,10 +966,6 @@ body.checkout-page #main-navbar img{
 ============================================== */
 @media (max-width: 991px) {
 
-    /* El navbar no cambia de altura */
-    #main-navbar {
-        position: fixed;
-    }
 
     /* 🔥 CLAVE: sacamos el menú del flujo */
     .navbar-collapse {
@@ -1132,3 +1115,4 @@ body.checkout-page #main-navbar img{
         right: 20px;
     }
 }
+
