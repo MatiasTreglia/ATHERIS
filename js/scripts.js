@@ -146,47 +146,61 @@ document.addEventListener('DOMContentLoaded', function () {
         input.addEventListener('input', updateCartTotal);
     });
 
-    // ==============================================
-    // 8. ENVÍO DE FORMULARIO DE CONTACTO
-    // ==============================================
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const btn = document.getElementById('contact-submit-btn');
-            const originalText = btn.textContent;
-            
-            btn.disabled = true;
-            btn.textContent = 'Enviando...';
+  // ==============================================
+// 8. ENVÍO DE FORMULARIO DE CONTACTO (CORREGIDO PARA HOSTGATOR)
+// ==============================================
+const contactForm = document.getElementById('contact-form');
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTU5MIKPgHkQFQn11aJu9EYUmTroFv8SDwRstVxssdSt1GJY9Ns5eA_XU4yU8igM934g/exec';
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('contact-submit-btn');
+        const originalText = btn.textContent;
+        
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
 
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new FormData(contactForm)
-            })
-            .then(response => {
+        // IMPORTANTE: 'enviar.php' debe estar en la misma carpeta que tu index.html
+        const scriptURL = 'enviar.php'; 
+
+        const formData = new FormData(contactForm);
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Error en el servidor');
+            return response.json();
+        })
+        .then(data => {
+            if(data.result === "success") {
                 Swal.fire({ 
                     title: "¡Enviado!", 
-                    text: "Nos pondremos en contacto pronto.",
+                    text: "Gracias por contactarnos. Te enviamos un mail de confirmación.",
                     icon: "success", 
                     confirmButtonColor: '#6096ba' 
                 });
                 contactForm.reset();
-            })
-            .catch(error => {
-                Swal.fire({ 
-                    title: "Error", 
-                    text: "No se pudo enviar el mensaje.",
-                    icon: "error" 
-                });
-            })
-            .finally(() => {
-                btn.disabled = false;
-                btn.textContent = originalText;
+            } else {
+                Swal.fire({ title: "Error", text: data.message, icon: "error" });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({ 
+                title: "Error", 
+                text: "No se pudo conectar con el servidor de correos.",
+                icon: "error" 
             });
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.textContent = originalText;
         });
-    }
+    });
+}
 
     // ==============================================
     // 9. GUARDAR CARRITO Y REDIRIGIR AL CHECKOUT
