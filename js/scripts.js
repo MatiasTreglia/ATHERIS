@@ -178,7 +178,7 @@ if (contactForm) {
             if(data.result === "success") {
                 Swal.fire({ 
                     title: "¡Enviado!", 
-                    text: "Gracias por contactarnos. Te enviamos un mail de confirmación.",
+                    text: "Gracias por contactarnos. Nos comunicaremos a la brevedad.",
                     icon: "success", 
                     confirmButtonColor: '#6096ba' 
                 });
