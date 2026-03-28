@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupConditionalFields();
 
     // === 3. LÓGICA DE ENVÍO (GOOGLE SHEETS) ===
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbw-9PVbpO9kyIvIjmYXf9vD27qSiwQUTYNnkmJs6_CCA8IFcwiBDUUf47D4h6wN9IW75Q/exec';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbym7Yel4JCoUBlah0jBC8WHnwgN7eRzD8xWKsTD5ta5bu1VNf2mNYJQu8kRexpkps6NYA/exec';
 
     const form = document.forms['checkout-form'];
     const submitButton = document.querySelector('button[type="submit"][form="checkout-form"]');

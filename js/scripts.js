@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.disabled = true;
             btn.textContent = 'Enviando...';
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbw8MIkPWC-U32AnpxDex2cRnUpH_Ot1MFeQwlI1IVgcxF78j8NomksSajqwdbBS9gG-/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTU5MIKPgHkQFQn11aJu9EYUmTroFv8SDwRstVxssdSt1GJY9Ns5eA_XU4yU8igM934g/exec';
 
             fetch(scriptURL, {
                 method: 'POST',
